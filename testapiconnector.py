@@ -30,12 +30,12 @@ hostProperties = json.loads(content)
 #odlEdges = edgeProperties['edgeProperties']
 print json.dumps(hostProperties, indent = 2)
 
-"""
+
 resp, content = h.request(baseUrl + 'hosttracker/' + containerName + 'hosts/inactive', "GET")
 inactive_hostProperties = json.loads(content)
 #odlEdges = edgeProperties['edgeProperties']
 print json.dumps(inactive_hostProperties, indent = 2)
-"""
+
 # User links
 """
 resp, content = h.request(baseUrl + 'topology/' + containerName + 'userLinks', "GET")

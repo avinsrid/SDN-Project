@@ -109,6 +109,6 @@ I will work on all of these little at a time and contribute my suggestions and c
 doubts, let any of us know and we will try to help.
 
 ####################################################################################
-Please see Build and Compile instructions in build_compile.txt for procedure to build the files
+Please see Build and Compile instructions in build-compile-instructions.txt for procedure to build the files
 ####################################################################################
 

@@ -18,7 +18,8 @@ Ensure that VM is connected to INTERNET for above command to work!! I created tw
 --> Adaptor 1: Host Only
 --> Adaptor 2: NAT
 
-Then for Virtual Box, go to preferences and disable the DHCP setting under host only adaptor. This means that our VM will no longer use DHCP to get IPs in range 192.168.56.x range.
+Then for Virtual Box, go to preferences and disable the DHCP setting under host only adaptor. This means that our 
+ VM will no longer use DHCP to get IPs in range 192.168.56.x range.
 
 --> Restart VM
 --> Once VM comes up do 'ifconfig' to see the interfaces. You might see eth0 and eth1 or just eth0.
@@ -45,14 +46,17 @@ auto eth1
 iface eth1 inet dhcp
 ####################################################################
 
-:wq! and save the configuration. Restart VM again and when you perform "ifconfig" you will see your static IP for vboxnet0 adaptor i.e. eth0 and DHCP allocated IP of 10.x.x.x range for NAT interface (eth1)
+:wq! and save the configuration. Restart VM again and when you perform "ifconfig" you will see your static IP for 
+ vboxnet0 adaptor i.e. eth0 and DHCP allocated IP of 10.x.x.x range for NAT interface (eth1).
 
-REFERENCE: http://askubuntu.com/questions/293816/in-virtualbox-how-do-i-set-up-host-only-virtual-machines-that-can-access-the-in
+REFERENCE: 
+http://askubuntu.com/questions/293816/in-virtualbox-how-do-i-set-up-host-only-virtual-machines-that-can-access-the-in
 ##########################################################################
 
 STEP-2:
 
-Once you have done the network changes and executed "mvn clean install -DskipTests" inside ~/opendaylight-source directory do this STEP-2. TIll then don't try anything else as you can't get anything working!
+Once you have done the network changes and executed "mvn clean install -DskipTests" inside 
+~/opendaylight-source directory do this STEP-2. TIll then don't try anything else as you can't get anything working!
 
 1) Go to home directory i.e. cd ~/
 2) Create a directory "test" [ THIS IS THE ROOT DIRECTORY ] i.e. mkdir test
@@ -75,7 +79,9 @@ test (root)
 					|
 					|--c
 
-4) Under c, you will create your java files. [ FEEL FREE TO NAME a, b, c as you like] For concurrency let us keep 'a' as 'SDN' and 'b' as 'Project' . You will see that in the uploaded files I have a root directory 'controller' with above hierarchy. My 'a' and 'b' are 'SDN' and 'Project' with 'c' being 'reca'.
+4) Under c, you will create your java files. [ FEEL FREE TO NAME a, b, c as you like] For concurrency let us 
+keep 'a' as 'SDN' and 'b' as 'Project' . You will see that in the uploaded files I have a root directory 
+'controller' with above hierarchy. My 'a' and 'b' are 'SDN' and 'Project' with 'c' being 'reca'.
 
 Two important java files that are needed:
 Activator.java
@@ -83,19 +89,25 @@ any_file_name.java
 
 So inside 'reca' folder I created L2Forward.java and Activator.java
 
-5) Create a pom.xml (VERY IMPORTANT FOR MAVEN BUILDING) inside ~/test directory. In my code above, you can see pom.xml inside ~/controller directory.
+5) Create a pom.xml (VERY IMPORTANT FOR MAVEN BUILDING) inside ~/test directory. In my code above, you can 
+see pom.xml inside ~/controller directory.
 
 WHAT IS pom.xml ?
 
-When you build the java program using MAVEN, it will check for all the depent classes you require for your program execution. It will also check all the directories and combine it into one so that you have a single executable jar file at the end.
+When you build the java program using MAVEN, it will check for all the depent classes you require for your 
+program execution. It will also check all the directories and combine it into one so that you have a single 
+executable jar file at the end.
 
-Quick point: All directories will be referred beginning from test/src/main/java. Again you can name a directory with any name of your choice but src, main, and java have to be the same !!!! (VERY IMPORTANT)
+Quick point: All directories will be referred beginning from test/src/main/java. Again you can name a directory 
+with any name of your choice but src, main, and java have to be the same !!!! (VERY IMPORTANT)
 
 Now, we will begin going from test/src/main/java . So c is basically a.b.c this means c is under b is under a.
 
 So in the below xml file, sdn.project means, 'project' is under 'sdn' directory.
 
-Here is a sample which will show you what to edit. I have put # and arrows to indicate what the values would be based on our scenario. 
+Here is a sample which will show you what to edit. I have put # and arrows to indicate what the values would be 
+based on our scenario. 
+
 (DO NOT PUSH THOSE # in the actual pom.xml file!!)
 
 ####################################################################################
@@ -136,12 +148,12 @@ Here is a sample which will show you what to edit. I have put # and arrows to in
 
     <dependencies>
         <dependency>
-            <groupId>org.opendaylight.controller</groupId> ## These are open daylight modules you need, for every module or class you
+            <groupId>org.opendaylight.controller</groupId>                 ## These are open daylight modules you need, for every module or class you
             <artifactId>sal</artifactId> 				   ## want to implement from ODL, you should do this. So here I am importing
             <version>0.7.0</version>					   ## 'sal' package from org.opendaylight.controller
         </dependency>
         <dependency>
-            <groupId>org.opendaylight.controller</groupId> ## Same goes here, but 'switchmanager' is imported from
+            <groupId>org.opendaylight.controller</groupId>         ## Same goes here, but 'switchmanager' is imported from
             <artifactId>switchmanager</artifactId>		   ## org.opendaylight.controller
             <version>0.7.0</version>
 
@@ -158,27 +170,35 @@ If you have done all of the above perfectly, do the following:
 1) Navigate to ~/tests
 2) Execute 'mvn eclipse:eclipse' --> This will do entire eclipse build for maven integration
 3) Open Eclipse --> File --> Import --> General --> From existing workspace and select 'test' directory
-4) Open the src/main/java/ and you will see a.b.c directory with your files in it Activator.java and any_file_name.java
+4) Open the src/main/java/ and you will see a.b.c directory with your files in it Activator.java and 
+   any_file_name.java
 
 Edit and write your code.
 
-Code, code, code.. Do not compile on ECLIPSE. Just use eclipse for a reference of possible syntax errors and stuff. Make sure no RED CROSS MARKS ARE THERE. If you have no syntax or java issues, chances are you have skipped above steps or not done it properly. Re iterate through steps and check if everything is done! (I BROKE MY HEAD FOR HOURS BECAUSE OF THIS)
+Code, code, code.. Do not compile on ECLIPSE. Just use eclipse for a reference of possible syntax errors and stuff. 
+Make sure no RED CROSS MARKS ARE THERE. If you have no syntax or java issues, chances are you have skipped above 
+steps or not done it properly. Re iterate through steps and check if everything is done! (I BROKE MY HEAD FOR HOURS 
+BECAUSE OF THIS)
 
 ####################################################################################
 
 STEP-4:
 
 1) On finishing your code, navigate to ~/test directory.
-2) Execute 'mvn clean package'. If there are no build/compilation errors, you will see BUILD SUCCESS. If there is BUILD FAILED, see the error thrown and try to fix it. Google / blah blah / troubleshoot
-3) If BUILD SUCCESS, navigate to 'target' directory inside ~/test. In this case you will see a jar file named 'c-0.1.jar' . If c was any other name, we would have 'any_other_name-0.1.jar' :)
+2) Execute 'mvn clean package'. If there are no build/compilation errors, you will see BUILD SUCCESS. If there 
+is BUILD FAILED, see the error thrown and try to fix it. Google / blah blah / troubleshoot ...
+3) If BUILD SUCCESS, navigate to 'target' directory inside ~/test. In this case you will see a jar file named 
+'c-0.1.jar' . If c was any other name, we would have 'any_other_name-0.1.jar' :)
 
 ####################################################################################
 
 STEP-5
 
-1) Navigate to ~/opendaylight-source/opendaylight/distribution/opendaylight/target/distribution.opendaylight-osgipackage/opendaylight/
+1) Navigate to 
+~/opendaylight-source/opendaylight/distribution/opendaylight/target/distribution.opendaylight-osgipackage/opendaylight/
 and execute './run.sh'
-2) Wait for around 2 minutes for everything to popout and if you press enter-enter few times you will see OSGI console as seen below:
+2) Wait for around 2 minutes for everything to popout and if you press enter-enter few times you will see OSGI 
+console as seen below:
 
 osgi>
 
@@ -208,7 +228,8 @@ Your application will execute now successfully and you can begin mininet! :)
 
 ####################################################################################
 
-It is a big hurdle, but once you understand Java's architecture and how these programs are getting built, it will be a piece of cake. Have fun!
+It is a big hurdle, but once you understand Java's architecture and how these programs are getting built, 
+it will be a piece of cake. Have fun!
 
 ####################################################################################
 

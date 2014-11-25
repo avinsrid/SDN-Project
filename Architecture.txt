@@ -26,8 +26,8 @@ ARCHITECTURE
       					   ==================            ==================
       					   Child Controller-1			 Child Controller-2
       					   ==================            ==================
-      					   	 |									  |
-      					   RECA-1								RECA-2
+      					   	        |							 |
+      					          RECA-1					   RECA-2
 
 
 WHAT DOES RECA do? (Python / Java. Python should not be a problem as there is no dependency)

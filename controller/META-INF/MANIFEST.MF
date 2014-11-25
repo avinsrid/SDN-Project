@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1416875357507
+Build-Jdk: 1.7.0_65
+Built-By: ubuntu
+Bundle-Activator: project.sdn.reca.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: reca
+Bundle-SymbolicName: project.sdn.reca
+Bundle-Version: 0.1.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: project.sdn.reca;uses:="org.opendaylight.controller.sal.
+ flowprogrammer,org.opendaylight.controller.sal.core,org.apache.felix.dm
+ ,org.opendaylight.controller.switchmanager,org.opendaylight.controller.
+ sal.packet,org.slf4j,org.opendaylight.controller.sal.action,org.osgi.fr
+ amework,org.opendaylight.controller.sal.match,org.opendaylight.controll
+ er.sal.utils";version="0.1.0"
+Import-Package: org.apache.felix.dm;version="[3.0,4)",org.opendaylight.c
+ ontroller.sal.action;version="[0.7,1)",org.opendaylight.controller.sal.
+ core;version="[0.7,1)",org.opendaylight.controller.sal.flowprogrammer;v
+ ersion="[0.7,1)",org.opendaylight.controller.sal.match;version="[0.7,1)
+ ",org.opendaylight.controller.sal.packet;version="[0.7,1)",org.opendayl
+ ight.controller.sal.utils;version="[0.7,1)",org.opendaylight.controller
+ .switchmanager;version="[0.7,1)",org.osgi.framework;version="[1.5,2)",o
+ rg.slf4j;version="[1.7,2)"
+Tool: Bnd-1.50.0

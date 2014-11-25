@@ -1,7 +1,8 @@
 ####################################################################################
 ARCHITECTURE
 ####################################################################################
-
+Note: When viewing this, change INDENT SIZE TO 4 on GITHUB, it will re format it. git is saving this with indentation
+8 by default.
 
 
 

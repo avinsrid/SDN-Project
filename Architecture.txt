@@ -1,0 +1,61 @@
+####################################################################################
+ARCHITECTURE
+####################################################################################
+Note: When viewing this, change INDENT SIZE TO 4 on GITHUB, it will re format it. git is saving this with indentation
+8 by default.
+
+
+
+
+
+                                         =====================
+                                           Parent Controller
+                                         =====================
+                                         |					|
+                                         |					|
+                                         |					|
+                                         |					|
+                                         s5-----------------s6
+
+
+                                         		MININET
+      							s1------s2-------------------s3------s4
+      							|		|                    |		|
+      							|		|					 |		|
+      							|		|					 |		|
+      							|		|					 |		|
+      					   ==================            ==================
+      					   Child Controller-1			 Child Controller-2
+      					   ==================            ==================
+      					   	        |							 |
+      					          RECA-1					   RECA-2
+
+
+WHAT DOES RECA do? (Python / Java. Python should not be a problem as there is no dependency)
+
+--> Pulls topology containing switches and edges from each child controller
+--> If the link between s2 and s3 exists, it will not do anything as parent controller has mapped s5 and s6 and keeps them connected.
+--> If the link between s2 and s3 breaks, we will communicate to parent controller by deleting the mapped links s5 and s6 accordingly. This can be done by deleting a port on s5.
+--> If link betwee s2 and s3 is identified in future again, we just re add the port on s5 using 'sudo ovs-vsctl add-port s5 s5-eth1'
+--> THUS PARENT CONTROLLER HAS A HIGH LEVEL OVERVIEW OF TWO G-SWITCHES 1 AND 2
+
+WHAT DOES REG OPTIMIZATION do (Java Mainly, Python can also be used as there is no dependency. Depends on programmer)
+
+--> Pulls topology from two child controllers and checks if a host has moved across ' We can get the active hosts information by referring testapiconnectors.py'
+--> If hosts movement from controller 1 to controller 2 is more, we sill shift the respective switch to controller 2
+
+ADDITIONAL FUNCTION:
+
+If controller-1 receives a packet destined to controller-2's network, it won't know what to do. In this case it should call a function FIND_IF_POSS()
+
+FIND_IF_POSS()
+{
+	- Pull topology from parents controller and check if s5 is connected to s6
+	- If s5 is connected to s6, we will find s3's exit port (pulling topology from child controller-1) and return this port value to controller.
+}
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/org/opendaylight/controller/sal/0.7.0/sal-0.7.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/felix/org.apache.felix.dependencymanager/3.1.0/org.apache.felix.dependencymanager-3.1.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/osgi/org.osgi.core/4.2.0/org.osgi.core-4.2.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/opendaylight/controller/switchmanager/0.7.0/switchmanager-0.7.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/opendaylight/controller/configuration/0.4.1/configuration-0.4.1.jar"/>
+</classpath>

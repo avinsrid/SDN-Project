@@ -69,9 +69,10 @@ public class RecA implements IRouting, ITopologyManager {
     private ISwitchManager switchManager = null;
     private ITopologyManager topologyManager = null;
    // private IHostTrackerShell hostTracker = null;
-    private Map<Edge, Set<Property>> allEdges= new HashMap<Edge, Set<Property>>();
+    private Map<Edge, Set<Property>> allEdges = new HashMap<Edge, Set<Property>>();
     List<Switch> switchList;
-    Set<HostNodeConnector> hostsList;
+    Set<NodeConnector> setOfNodeConnWithHosts;
+    Map<Node, Set<Edge>> edgesForEachNode = new HashMap<Node, Set<Edge>>();
     private String function = "switch";
     long Timer = 0L;
 
@@ -169,11 +170,28 @@ public class RecA implements IRouting, ITopologyManager {
     			System.out.println("Printing all switches connected to the controller \n" + switchList);
     			System.out.println("\n\n\n");
     			
+    			// Set of node connectors
+    			setOfNodeConnWithHosts = topologyManager.getNodeConnectorWithHost();
+    			System.out.println("Printing the set of node connectors that have hosts attached with them \n" + setOfNodeConnWithHosts);
+
+    			edgesForEachNode = topologyManager.getNodeEdges();
+    			System.out.println("\nPrinting the edges each node has, this is a map again node --> edges\n" + edgesForEachNode);
+
     			// Get all hosts in this network. The hosts will only be printed if they are learnt by the controller, else nothing is displayed
     			// HostTracker does not work as ODL cannot find org.opendaylight.controller.internal.HostTracker , looks lie a bug
     			// Instead we will pull this information using REST API here. We need to download apache REST HTTP binaries for this.
     			// Have to work on this.
-    			
+
+    			// Check number of outgoing node connectors for each switch.
+    			//node connectors = number of hosts + number of switch connections + 1 for OF
+    			for ( Node node : edgesForEachNode.keySet()) {
+    				Set<NodeConnector> setOfNodeConn = switchManager.getNodeConnectors(node);
+    				System.out.println( setOfNodeConn + "\n");
+    				NodeConnector[] arrayNodeConn = setOfNodeConn.toArray(new NodeConnector[setOfNodeConn.size()]);
+    				for ( NodeConnector nodeConn : arrayNodeConn ) {
+    					System.out.println("\n" + nodeConn.getNodeConnectorIdAsString());
+    				}
+    			}
     			System.out.println("\n\n\n");
     		}
     	}

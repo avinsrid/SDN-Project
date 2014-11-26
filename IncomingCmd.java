@@ -19,25 +19,27 @@ public class IncomingCmd extends Thread {
 				Socket server = serverSocket.accept();
 				DataInputStream in = new DataInputStream(server.getInputStream());
 				String checkInput = in.readUTF();
-				if (checkInput == "Delete-s5") {
+				System.out.println(checkInput);
+				if (checkInput.equals("Delete-s5")) {
 					try {
 						Process p = Runtime.getRuntime().exec("sudo ovs-vsctl del-port s5 s5-eth1");
+						System.out.println("Executed");
 					}
 					catch (IOException e) { System.out.println("IncomingCmd:: Error deleting switch 5 port s5-eth1"); }
 				}
-				else if (checkInput == "Delete-s6 s6") {
+				else if (checkInput.equals("Delete-s6")) {
 					try {
 						Process p = Runtime.getRuntime().exec("sudo ovs-vsctl del-port s6 s6-eth1");
 					}
 					catch (IOException e) {System.out.println("IncomingCmd:: Error deleting switch 6 port s6-eth1"); }
 				}
-				else if (checkInput == "Pull-s5") {
+				else if (checkInput.equals("Pull-s5")) {
 					try {
 						Process p = Runtime.getRuntime().exec("sudo ovs-vsctl add-port s5 s5-eth1");
 					}
 					catch (IOException e) {System.out.println("IncomingCmd:: Error adding switch 5 port s5-eth1"); }
 				}
-				else if (checkInput == "Pull-s6") {
+				else if (checkInput.equals("Pull-s6")) {
 					try {
 						Process p = Runtime.getRuntime().exec("sudo ovs-vsctl add-port s6 s6-eth1");
 					}

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1416975354497
+Build-Jdk: 1.7.0_65
+Built-By: ubuntu
+Bundle-Activator: project.sdn.reca.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: reca
+Bundle-SymbolicName: project.sdn.reca
+Bundle-Version: 0.1.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: project.sdn.reca;uses:="org.opendaylight.controller.sal.
+ core,org.opendaylight.controller.sal.routing,org.opendaylight.controlle
+ r.topologymanager,org.apache.felix.dm,org.opendaylight.controller.switc
+ hmanager,org.opendaylight.controller.sal.packet,org.slf4j,org.opendayli
+ ght.controller.hosttracker.hostAware,org.opendaylight.controller.sal.ut
+ ils,org.osgi.framework";version="0.1.0"
+Import-Package: org.apache.felix.dm;version="[3.0,4)",org.opendaylight.c
+ ontroller.hosttracker.hostAware;version="[0.5,1)",org.opendaylight.cont
+ roller.sal.core;version="[0.7,1)",org.opendaylight.controller.sal.packe
+ t;version="[0.7,1)",org.opendaylight.controller.sal.routing;version="[0
+ .7,1)",org.opendaylight.controller.sal.utils;version="[0.7,1)",org.open
+ daylight.controller.switchmanager;version="[0.7,1)",org.opendaylight.co
+ ntroller.topologymanager;version="[0.4,1)",org.osgi.framework;version="
+ [1.5,2)",org.slf4j;version="[1.7,2)"
+Tool: Bnd-1.50.0

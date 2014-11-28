@@ -70,9 +70,10 @@ public class RecA implements IRouting, ITopologyManager {
     private ITopologyManager topologyManager = null;
    // private IHostTrackerShell hostTracker = null;
     private Map<Edge, Set<Property>> allEdges = new HashMap<Edge, Set<Property>>();
-    List<Switch> switchList;
-    Set<NodeConnector> setOfNodeConnWithHosts;
-    Map<Node, Set<Edge>> edgesForEachNode = new HashMap<Node, Set<Edge>>();
+    private List<Switch> switchList;
+    private Set<NodeConnector> setOfNodeConnWithHosts;
+    private Map<Node, Set<Edge>> edgesForEachNode = new HashMap<Node, Set<Edge>>();
+    private Map<Node, Map<Node, NodeConnector>> exitToOtherNetwork;
     private String function = "switch";
     long Timer = 0L;
 
@@ -151,50 +152,90 @@ public class RecA implements IRouting, ITopologyManager {
     void start() {
         logger.info("Started");
         System.out.println("Rec-A started!");
-        RecAImplementation();
+        recAImplementation();
 
     }
 
-    public void RecAImplementation () {
+    public void recAImplementation () {
     	Timer = System.currentTimeMillis();
     	while (true) {
-    		if (System.currentTimeMillis() - Timer > 10000) {
+    		if (System.currentTimeMillis() - Timer > 60000) {
     			Timer = System.currentTimeMillis();
-    			allEdges = topologyManager.getEdges();
-    			// See ODL Documentation. Above will return a map of edges --> to properties of every edge
-    			// We print the edges and their properties below
-    			System.out.println("Printing all edges \n)" + allEdges);
-    			
-    			// If we want to obtain all nodes (switches connected to controller)
-    			switchList = switchManager.getNetworkDevices();
-    			System.out.println("Printing all switches connected to the controller \n" + switchList);
-    			System.out.println("\n\n\n");
-    			
-    			// Set of node connectors
-    			setOfNodeConnWithHosts = topologyManager.getNodeConnectorWithHost();
-    			System.out.println("Printing the set of node connectors that have hosts attached with them \n" + setOfNodeConnWithHosts);
+                exitToOtherNetwork = new HashMap<Node, Map<Node, NodeConnector>>();
+                Set<Node> nodesInNetwork = switchManager.getNodes();
+                edgesForEachNode = topologyManager.getNodeEdges();
+                System.out.println("\n\nRecA::recAImplementation: Obtained edges for each node!" + edgesForEachNode);
+                if (!nodesInNetwork.isEmpty()) {
+                    obtainExitInterface(nodesInNetwork);
+                    System.out.println("\n\nRecA::recAImplementation: The function executed!");
+                }
+                else {
+                    System.out.println("\n\nRecA::recAImplementation: The function did not execute!");
+                }
+                System.out.println("\n\nRecA::recAImplementation: Exit Interfaces in this network: " + exitToOtherNetwork);
 
-    			edgesForEachNode = topologyManager.getNodeEdges();
-    			System.out.println("\nPrinting the edges each node has, this is a map again node --> edges\n" + edgesForEachNode);
-
-    			// Get all hosts in this network. The hosts will only be printed if they are learnt by the controller, else nothing is displayed
-    			// HostTracker does not work as ODL cannot find org.opendaylight.controller.internal.HostTracker , looks lie a bug
-    			// Instead we will pull this information using REST API here. We need to download apache REST HTTP binaries for this.
-    			// Have to work on this.
-
-    			// Check number of outgoing node connectors for each switch.
-    			//node connectors = number of hosts + number of switch connections + 1 for OF
-    			for ( Node node : edgesForEachNode.keySet()) {
-    				Set<NodeConnector> setOfNodeConn = switchManager.getNodeConnectors(node);
-    				System.out.println( setOfNodeConn + "\n");
-    				NodeConnector[] arrayNodeConn = setOfNodeConn.toArray(new NodeConnector[setOfNodeConn.size()]);
-    				for ( NodeConnector nodeConn : arrayNodeConn ) {
-    					System.out.println("\n" + nodeConn.getNodeConnectorIdAsString());
-    				}
-    			}
-    			System.out.println("\n\n\n");
-    		}
+                System.out.println("\n\nRecA::recAImplementation: Printing all nodes in the network = " + nodesInNetwork);
+                if (!exitToOtherNetwork.isEmpty())
+                {   
+                    Map<Node, Map<Node, NodeConnector>> tempExitToOtherNetwork = new HashMap<Node, Map<Node, NodeConnector>>();
+                    for (Node everyNode : exitToOtherNetwork.keySet()) {
+                        if (nodesInNetwork.contains(everyNode)) {
+                            tempExitToOtherNetwork.put(everyNode, exitToOtherNetwork.get(everyNode));
+                        }
+                    exitToOtherNetwork = tempExitToOtherNetwork;
+                    }   
+                }
+                System.out.println("\n\nRecA::recAImplementation: Printing all nodes in the network after filtering = " + exitToOtherNetwork);
+            }
     	}
+    }
+
+    public void obtainExitInterface(Set<Node> nodesInNetwork) {
+        Node[] arrayNodesInNetwork = nodesInNetwork.toArray(new Node[nodesInNetwork.size()]);
+        for ( Node node : arrayNodesInNetwork ) {
+            System.out.println("\n\nWorking on node + " + node + "\n\n");
+            Map<Node, NodeConnector> switchToPort = new HashMap<Node, NodeConnector>();
+            // Obtain set of node connectors for each switch
+            Set<NodeConnector> setOfNodeConn = switchManager.getNodeConnectors(node);
+            System.out.println("\n\nobtainExitInterface: NodeConnectors for each switch\n\n" + setOfNodeConn);
+            // Obtain set of edges for each switch
+            Set<Edge> edgesPerSwitch = edgesForEachNode.get(node);
+            System.out.println("\n\nobtainExitInterface: Edges for each switch\n\n" + edgesPerSwitch);
+            // Convert the set of edges of each switch to an array
+            Edge[] arrayEdgePerSwitch = edgesPerSwitch.toArray(new Edge[edgesPerSwitch.size()]);
+            System.out.println("\n\nobtainExitInterface: Array Format -- Edges for each switch\n\n" + arrayEdgePerSwitch);
+
+            // Convert the set of node connectors for each switch to an array
+            NodeConnector[] arrayOfNodeConn = setOfNodeConn.toArray(new NodeConnector[setOfNodeConn.size()]);
+            System.out.println("\n\nobtainExitInterface: Array Format -- Edges for each switch\n\n" + arrayOfNodeConn);
+
+            // Check from the edges of each switch, if there is a uni directional link. If so, we store that as the link going to other
+            // controller's network. This is done by checking if there is no reverse link for that specific node
+            for (Edge link1 : arrayEdgePerSwitch) {
+                boolean check = false;
+                for (Edge link2 : arrayEdgePerSwitch) {
+                    Edge link2Reverse;
+                    try {
+                        link2Reverse = new Edge(link2.getHeadNodeConnector(), link2.getTailNodeConnector());
+                        //catch(ConstructionException c) {System.out.println("Exception to create edge!");}
+                        System.out.println("\n\nRecA::obtainExitInterface: Reversed Edge is = " + link2Reverse);
+                        if (link1.equals(link2Reverse)) {
+                            System.out.println("\n\nRecA::obtainExitInterface: Check hit true for edge = " + link1);
+                            check = true;
+                            break;
+                        }
+                    }
+                    catch(ConstructionException c) {System.out.println("\n\nRecA::obtainExitInterface: Exception to create edge!");}
+                }
+                if (check == false) {
+                NodeConnector headNode = link1.getHeadNodeConnector();
+                NodeConnector tailNode = link1.getTailNodeConnector();
+                Node tempNode = tailNode.getNode();
+                switchToPort.put(tempNode, headNode);
+                }
+            }
+            exitToOtherNetwork.put(node, switchToPort);
+        }
     }
     /**
      * Function called by the dependency manager before the services

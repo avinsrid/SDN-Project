@@ -156,6 +156,14 @@ public class reca implements IRouting, ITopologyManager {
     public void RecAImplementation ()
     {
         Timer = System.currentTimeMillis();
+        /*    try{
+                    System.out.println("connecting to socket of master");
+                    Socket client = new Socket("192.168.56.102", 41201);
+                    OutputStream outToServer = client.getOutputStream();
+                    out = new DataOutputStream(outToServer);
+                    System.out.println("Connected");
+                }
+                catch (IOException e) {e.printStackTrace();}*/
         while (true)
         {
             if (System.currentTimeMillis() - Timer > 10000)
@@ -167,33 +175,26 @@ public class reca implements IRouting, ITopologyManager {
                 System.out.println("Nodes with edges are : " + edgesForEachNode);
                 System.out.println("\n\n\nNo Of Nodes are " + edgesForEachNode.size());
                 allNodes = edgesForEachNode.keySet();
+
                 
-                
-            /*    try{
-                    System.out.println("connecting to socket of master");
-                    Socket client = new Socket("192.168.56.102", 41201);
-                    OutputStream outToServer = client.getOutputStream();
-                    out = new DataOutputStream(outToServer);
-                }
-                catch (IOException e) {e.printStackTrace();}*/
-                
-                System.out.println("Connected");
-                
+                //Check all edges per node
                 for(Node checkNode : allNodes) {
                     System.out.println("\nNode is " + checkNode);
                     NodeEdges = edgesForEachNode.get(checkNode);
-                    System.out.println("Edges are : " + NodeEdges); //Set of Edge
+                    System.out.println("Edges are : " + NodeEdges); //Set of Edges
                     for(Edge edgeCheck : NodeEdges)
                     {
                         System.out.println("Checking edge : " + count + edgeCheck);
                         Head=edgeCheck.getHeadNodeConnector();
                         Tail=edgeCheck.getTailNodeConnector();
+                        //Check if reverse edge exists
+                        
                         try {
                             edgeReverse=new Edge(Head,Tail);
                             System.out.println("Reverse Edge : " + edgeReverse);
                             if(!NodeEdges.contains(edgeReverse))
                             {
-                                if(!destNodeMap.containsKey(checkNode))
+                                if(!destNodeMap.containsKey(checkNode)) 
                                 {
                                     System.out.println("Reverse edge not present, add to map : ");
                                     //If reverse edge not present, add original edge to map
@@ -202,7 +203,7 @@ public class reca implements IRouting, ITopologyManager {
                                     extraEdge.put(checkNode,edgeCheck);
                                     
                                  //   try {
-                                        System.out.println("Trying to send");
+                                        System.out.println("Trying to send addlink");
                                         String add = edgeCheck.toString();
                                         String toSend = "add " + add;
                                         
@@ -218,8 +219,6 @@ public class reca implements IRouting, ITopologyManager {
                         }
                         count++;
                     }
-                    
-                    
                     //check if edge is still connected
                     for(Node checkNode1 : allNodes)
                     {
@@ -233,8 +232,9 @@ public class reca implements IRouting, ITopologyManager {
                                 //remove from both maps
                                 extraEdge.remove(checkNode1);
                                 destNodeMap.remove(checkNode1);
+                                
                               /*  try {
-                                    System.out.println("Trying to send");
+                                    System.out.println("Trying to send removelink");
                                     String add = edgeCheck.toString();
                                     String toSend = "remove " + add;
                                     

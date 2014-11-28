@@ -10,7 +10,8 @@ import org.codehaus.jettison.json.JSONObject;
 
 import org.opendaylight.controller.switchmanager.Switch;
 public class PortDiscovery(long sourceMac, long destMac, Switch sw  ){
-	
+
+// Call the getTopology function with username password and URL	
 JSONObject topology = JSONObject getTopology("admin","admin","http://localhost:8080/controller/nb/v2//topology/default")	
 
 }
@@ -25,7 +26,7 @@ public static JSONObject getTopology(String user, String password,
             baseURL = "http://" + baseURL;
         }
 
-        // Create URL = base URL + container
+        // Create URL = base URL 
         URL url = new URL(baseURL);
 
         // Create authentication string and encode it to Base64

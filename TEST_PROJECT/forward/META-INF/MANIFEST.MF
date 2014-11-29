@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1417222588538
+Build-Jdk: 1.7.0_55
+Built-By: blitzavi89
+Bundle-Activator: forward.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: Learning Switch Forwarding Behaviour
+Bundle-SymbolicName: columbia.forward
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: forward;uses:="org.opendaylight.controller.sal.flowprogr
+ ammer,org.opendaylight.controller.sal.core,org.apache.felix.dm,org.open
+ daylight.controller.switchmanager,org.opendaylight.controller.sal.packe
+ t,org.slf4j,org.opendaylight.controller.sal.utils,org.opendaylight.cont
+ roller.sal.action,org.osgi.framework,org.opendaylight.controller.sal.ma
+ tch";version="1.0.0"
+Import-Package: org.apache.felix.dm;version="[3.0,4)",org.eclipse.osgi.f
+ ramework.console;version="[1.1,2)",org.opendaylight.controller.sal.acti
+ on;version="[0.8,1)",org.opendaylight.controller.sal.core;version="[0.8
+ ,1)",org.opendaylight.controller.sal.flowprogrammer;version="[0.8,1)",o
+ rg.opendaylight.controller.sal.match;version="[0.8,1)",org.opendaylight
+ .controller.sal.packet;version="[0.8,1)",org.opendaylight.controller.sa
+ l.routing;version="[0.8,1)",org.opendaylight.controller.sal.topology;ve
+ rsion="[0.8,1)",org.opendaylight.controller.sal.utils;version="[0.8,1)"
+ ,org.opendaylight.controller.switchmanager;version="[0.7,1)",org.osgi.f
+ ramework;version="[1.7,2)",org.osgi.service.component;version="[1.2,2)"
+ ,org.slf4j;version="[1.7,2)"
+Tool: Bnd-1.50.0

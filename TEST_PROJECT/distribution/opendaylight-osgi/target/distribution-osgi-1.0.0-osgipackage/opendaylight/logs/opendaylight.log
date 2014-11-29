@@ -1,0 +1,49 @@
+2014-11-28 19:57:04.031 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-11-28 19:57:04.205 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
+2014-11-28 19:57:04.298 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
+2014-11-28 19:57:04.299 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
+2014-11-28 19:57:04.848 EST [fileinstall-./plugins] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-11-28 19:57:04.868 EST [fileinstall-./plugins] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
+2014-11-28 19:57:09.997 EST [Start Level Event Dispatcher] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
+2014-11-28 19:57:10.970 EST [Start Level Event Dispatcher] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
+2014-11-28 19:57:57.726 EST [SwitchHandler-2] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51916 is connected to the Controller
+2014-11-28 19:57:57.860 EST [SwitchHandler-3] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51917 is connected to the Controller
+2014-11-28 19:57:57.972 EST [SwitchHandler-4] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51918 is connected to the Controller
+2014-11-28 19:57:58.103 EST [SwitchHandler-5] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51919 is connected to the Controller
+2014-11-28 19:57:58.203 EST [SwitchHandler-6] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51920 is connected to the Controller
+2014-11-28 19:57:58.310 EST [SwitchHandler-7] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51921 is connected to the Controller
+2014-11-28 19:57:58.419 EST [SwitchHandler-8] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51922 is connected to the Controller
+2014-11-28 19:57:58.563 EST [SwitchHandler-9] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51923 is connected to the Controller
+2014-11-28 19:57:58.703 EST [SwitchHandler-10] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51924 is connected to the Controller
+2014-11-28 19:57:58.751 EST [SwitchHandler-11] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51925 is connected to the Controller
+2014-11-28 19:57:58.875 EST [SwitchHandler-12] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51926 is connected to the Controller
+2014-11-28 19:57:59.046 EST [SwitchHandler-13] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51927 is connected to the Controller
+2014-11-28 19:57:59.187 EST [SwitchHandler-14] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51928 is connected to the Controller
+2014-11-28 19:57:59.339 EST [SwitchHandler-15] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51929 is connected to the Controller
+2014-11-28 19:57:59.535 EST [SwitchHandler-16] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51930 is connected to the Controller
+2014-11-28 19:57:59.714 EST [SwitchHandler-17] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51931 is connected to the Controller
+2014-11-28 19:57:59.927 EST [SwitchHandler-18] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51932 is connected to the Controller
+2014-11-28 19:58:00.114 EST [SwitchHandler-19] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51933 is connected to the Controller
+2014-11-28 19:58:00.329 EST [SwitchHandler-20] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51934 is connected to the Controller
+2014-11-28 19:58:00.555 EST [SwitchHandler-21] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51935 is connected to the Controller
+2014-11-28 19:58:00.747 EST [SwitchHandler-22] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51936 is connected to the Controller
+2014-11-28 19:58:49.478 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51925 SWID:00:00:00:00:00:00:00:01 is removed
+2014-11-28 19:58:49.604 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51917 SWID:00:00:00:00:00:00:00:02 is removed
+2014-11-28 19:58:50.017 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51918 SWID:00:00:00:00:00:00:00:03 is removed
+2014-11-28 19:58:50.196 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51919 SWID:00:00:00:00:00:00:00:04 is removed
+2014-11-28 19:58:50.328 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51920 SWID:00:00:00:00:00:00:00:05 is removed
+2014-11-28 19:58:50.473 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51921 SWID:00:00:00:00:00:00:00:06 is removed
+2014-11-28 19:58:50.618 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51922 SWID:00:00:00:00:00:00:00:07 is removed
+2014-11-28 19:58:50.745 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51923 SWID:00:00:00:00:00:00:00:08 is removed
+2014-11-28 19:58:50.868 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51924 SWID:00:00:00:00:00:00:00:09 is removed
+2014-11-28 19:58:50.991 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51926 SWID:00:00:00:00:00:00:00:0a is removed
+2014-11-28 19:58:51.115 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51927 SWID:00:00:00:00:00:00:00:0b is removed
+2014-11-28 19:58:51.234 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51928 SWID:00:00:00:00:00:00:00:0c is removed
+2014-11-28 19:58:51.340 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51929 SWID:00:00:00:00:00:00:00:0d is removed
+2014-11-28 19:58:51.453 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51930 SWID:00:00:00:00:00:00:00:0e is removed
+2014-11-28 19:58:51.578 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51931 SWID:00:00:00:00:00:00:00:0f is removed
+2014-11-28 19:58:51.703 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51932 SWID:00:00:00:00:00:00:00:10 is removed
+2014-11-28 19:58:51.831 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51933 SWID:00:00:00:00:00:00:00:11 is removed
+2014-11-28 19:58:51.951 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51934 SWID:00:00:00:00:00:00:00:12 is removed
+2014-11-28 19:58:52.054 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51935 SWID:00:00:00:00:00:00:00:13 is removed
+2014-11-28 19:58:52.160 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:51936 SWID:00:00:00:00:00:00:00:14 is removed

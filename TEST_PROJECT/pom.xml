@@ -17,6 +17,7 @@
   <modules>
     <module>commons/parent</module>
     <module>forward</module>
+    <module>reca</module>
     <module>distribution/opendaylight-osgi</module>
   </modules>
 

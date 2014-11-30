@@ -248,8 +248,8 @@ public class reca implements IRouting, ITopologyManager {
         String toSend;
         if(type==1) toSend = "linkup";
         else toSend = "linkdown";
-        /*  out.writeUTF(toSend);
-          System.out.println("Completed! sent " + toSend);
+        //  out.writeUTF(toSend);
+        //  System.out.println("Completed! sent " + toSend);
          }
          catch (IOException e) {e.printStackTrace();}*/
     }

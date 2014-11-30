@@ -251,7 +251,7 @@ public class reca implements IRouting, ITopologyManager {
         //  out.writeUTF(toSend);
         //  System.out.println("Completed! sent " + toSend);
          }
-         catch (IOException e) {e.printStackTrace();}*/
+         catch (IOException e) {e.printStackTrace();}
     }
     
     /**

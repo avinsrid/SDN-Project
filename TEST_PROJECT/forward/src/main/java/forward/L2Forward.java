@@ -60,6 +60,7 @@ public class L2Forward implements IListenDataPacket {
     private String function = "switch";
     private Map<Long, Long> numberOfMacs = new HashMap<Long, Long>();
     private long count = 0L;
+    private RecA reca_object = new RecA();
     void setDataPacketService(IDataPacketService s) {
         this.dataPacketService = s;
     }
@@ -174,6 +175,8 @@ public class L2Forward implements IListenDataPacket {
         Packet formattedPak = this.dataPacketService.decodeDataPacket(inPkt);
         NodeConnector incoming_connector = inPkt.getIncomingNodeConnector();
         Node incoming_node = incoming_connector.getNode();
+        //test
+        //RecA reca_object = new RecA();
 
         if (formattedPak instanceof Ethernet) {
             byte[] srcMAC = ((Ethernet)formattedPak).getSourceMACAddress();

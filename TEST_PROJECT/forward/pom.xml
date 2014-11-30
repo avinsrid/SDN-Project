@@ -32,7 +32,7 @@
               org.opendaylight.controller.sal.routing,
               org.opendaylight.controller.sal.flowprogrammer,
               org.opendaylight.controller.switchmanager,
-   	      columbia.reca,
+   	      reca.*,
               org.apache.felix.dm,
               org.osgi.service.component,
               org.slf4j,
@@ -40,7 +40,7 @@
               org.osgi.framework
             </Import-Package>
             <Export-Package>
-              columbia.forward
+              forward
             </Export-Package>
             <Bundle-Activator>
               forward.Activator

@@ -1,8 +1,3 @@
-//Can use the below variables to return RecA outport. If fine can proceed with method that can be used to call to return type you want. Let me know. ~Avi~ Still not sure why you need
-//the entire Set of NodeConnectors but will create the same. Also yet to clarify who to connect TCP client to. Must add that
-//destNodeMap -> this is one could use to get the nodeconnector for unknown destination. For a given Source Node you can get a Map of Head/Tail connector. Method can be modeled as you want it to be. Can also use below
-//extraEdge -> for a given node this returns the extra edge as is. You can use getHeadNodeConnector/getTailNodeConnector to get output port as desired
-
 package sdn.project.reca; // If in test folder name as reca.java
 
 import java.net.InetAddress;

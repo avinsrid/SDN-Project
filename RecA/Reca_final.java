@@ -1,4 +1,6 @@
-package sdn.project.reca; // If in test folder name as reca.java
+/* Minor print out modifications, must delete getTail test in RecaImplementation, uncomment TCP section*/
+
+package sdn.project.reca; 
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -70,9 +72,6 @@ public class reca implements IRouting, ITopologyManager {
     .getLogger(reca.class);
     private ISwitchManager switchManager = null;
     private ITopologyManager topologyManager = null;
-    // private IHostTrackerShell hostTracker = null;
-    
-    //Set<Edge> noOfEdges;
     private Map<Node, Set<Edge>> edgesForEachNode = new HashMap<Node, Set<Edge>>();
     private Set<Node> allNodes;
     private Set<Edge> NodeEdges;
@@ -86,7 +85,7 @@ public class reca implements IRouting, ITopologyManager {
     private NodeConnector Head, Tail;
     private DataOutputStream out;
     private String function = "switch";
-    private long Timer = 0L, pollTime = 10000L;
+    private long Timer = 0L, pollTime = 60000L;
     private boolean edgeExists=false;
     
     void setSwitchManager(ISwitchManager s) {
@@ -146,7 +145,7 @@ public class reca implements IRouting, ITopologyManager {
      */
     void start() {
         logger.info("Started");
-        System.out.println("Rec-A started!");
+        System.out.println("Reca::start :- \nRec-A started!");
         RecAImplementation();
         
     }
@@ -182,14 +181,14 @@ public class reca implements IRouting, ITopologyManager {
                             {
                                 if(!destNodeMap.containsKey(checkNode))
                                 {
-                                    System.out.println("Reverse edge not present, add to map : ");
+                                    System.out.println("Reca::RecaImplementation :- \nReverse edge not present, add to map : ");
                                     //If reverse edge not present, add original edge to map
                                     extraLink.put(Head,Tail);
                                     if(!setOfNodeconnectors.contains(Tail))
                                     {
                                         setOfNodeconnectors.add(Tail);
                                         
-                                        ////////ALL EXTRA -> Just for testing////////
+                                        ////////ALL EXTRA -> Just for testing - to be removed////////
                                         //************************************//
                                         setOfNodeconnectors1 = getTail(); //setOfNodeconnectors1 -> just to test method getTail();
                                         if(!setOfNodeconnectors1.isEmpty()) {
@@ -201,12 +200,12 @@ public class reca implements IRouting, ITopologyManager {
                                     }
                                     destNodeMap.put(checkNode,extraLink);
                                     extraEdge.put(checkNode,edgeCheck);
-                                    sendToMaster(1); // Send linkup to master
+                                    sendToMaster(1);  // Send LinkUp to Master
                                 }
                             }
                         }
                         catch(ConstructionException c) {
-                            System.out.println("Exception to create edge!");
+                            System.out.println("Reca::RecaImplementation :- \nException to create edge!");
                         }
                     }
                     
@@ -218,9 +217,7 @@ public class reca implements IRouting, ITopologyManager {
                         
                         //Entry present in map but no longer present in topology -> then remove
                         if(!NodeEdges.contains(edgeCheck)) {
-                            //remove from both maps
                             Tail=edgeCheck.getTailNodeConnector();
-                            
                             extraEdge.remove(checkNode);
                             destNodeMap.remove(checkNode);
                             if(setOfNodeconnectors.contains(Tail) && setOfNodeconnectors1.contains(Tail)) {
@@ -244,12 +241,11 @@ public class reca implements IRouting, ITopologyManager {
     
     public void sendToMaster(int type) {  // Type 1 : linkup , type 2 linkdown
         try {
-        System.out.println("Trying to send");
         String toSend;
         if(type==1) toSend = "linkup";
         else toSend = "linkdown";
         //  out.writeUTF(toSend);
-        //  System.out.println("Completed! sent " + toSend);
+          System.out.println("Reca::sendToMaster :- \nSent to Master Controller : " + toSend);
          }
          catch (IOException e) {e.printStackTrace();}
     }
@@ -360,4 +356,5 @@ public class reca implements IRouting, ITopologyManager {
         // TODO Auto-generated method stub
         
     }
+    
 }

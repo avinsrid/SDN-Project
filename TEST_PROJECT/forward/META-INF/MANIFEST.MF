@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1417383720026
+Bnd-LastModified: 1417475812296
 Build-Jdk: 1.7.0_55
 Built-By: blitzavi89
 Bundle-Activator: forward.Activator
@@ -11,9 +11,9 @@ Created-By: Apache Maven Bundle Plugin
 Export-Package: forward;uses:="org.opendaylight.controller.sal.flowprogr
  ammer,org.opendaylight.controller.sal.core,org.apache.felix.dm,org.open
  daylight.controller.switchmanager,org.opendaylight.controller.sal.packe
- t,org.slf4j,org.opendaylight.controller.sal.utils,org.opendaylight.cont
- roller.sal.action,reca,org.osgi.framework,org.opendaylight.controller.s
- al.match";version="1.0.0"
+ t,org.slf4j,org.opendaylight.controller.sal.action,org.osgi.framework,r
+ eca,org.opendaylight.controller.sal.match,org.opendaylight.controller.s
+ al.utils";version="1.0.0"
 Import-Package: org.apache.felix.dm;version="[3.0,4)",org.eclipse.osgi.f
  ramework.console;version="[1.1,2)",org.opendaylight.controller.sal.acti
  on;version="[0.8,1)",org.opendaylight.controller.sal.core;version="[0.8

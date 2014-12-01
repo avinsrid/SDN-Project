@@ -33,8 +33,10 @@ import org.opendaylight.controller.sal.flowprogrammer.Flow;
 import org.opendaylight.controller.sal.packet.ARP;
 import org.opendaylight.controller.sal.packet.BitBufferHelper;
 import org.opendaylight.controller.sal.packet.Ethernet;
+import org.opendaylight.controller.sal.packet.IPv4;
 import org.opendaylight.controller.sal.packet.IDataPacketService;
 import org.opendaylight.controller.sal.packet.IListenDataPacket;
+import org.opendaylight.controller.sal.packet.address.DataLinkAddress;
 import org.opendaylight.controller.sal.packet.Packet;
 import org.opendaylight.controller.sal.packet.PacketResult;
 import org.opendaylight.controller.sal.packet.RawPacket;
@@ -53,6 +55,8 @@ import org.opendaylight.controller.switchmanager.Subnet;
 public class L2Forward implements IListenDataPacket {
     private static final Logger logger = LoggerFactory
             .getLogger(L2Forward.class);
+
+    // L2Forward members for the learning switch implementation
     private ISwitchManager switchManager = null;
     private IFlowProgrammerService programmer = null;
     private IDataPacketService dataPacketService = null;
@@ -132,6 +136,7 @@ public class L2Forward implements IListenDataPacket {
      */
     void start() {
         logger.info("Started");
+        System.out.println("L2Forward::start() Started");
     }
 
     /**
@@ -142,8 +147,11 @@ public class L2Forward implements IListenDataPacket {
      */
     void stop() {
         logger.info("Stopped");
+        System.out.println("L2Forward::stop(): Stopped");
     }
 
+
+    // Execute this function only when flooding occurs
     private void floodPacket(RawPacket inPkt) {
         NodeConnector incoming_connector = inPkt.getIncomingNodeConnector();
         Node incoming_node = incoming_connector.getNode();
@@ -162,21 +170,20 @@ public class L2Forward implements IListenDataPacket {
                 }
             }
         }
+        System.out.println("L2Forward::floodPacket(): Executed flooding");
     }
 
-    
+    // We subscribe to receiveDataPacket to listen in to PACKET_IN events from OF Switch
     public PacketResult receiveDataPacket(RawPacket inPkt) {
         if (inPkt == null) {
             return PacketResult.IGNORED;
         }
         logger.trace("Received a frame of size: {}",
                         inPkt.getPacketData().length);
-        System.out.println("Received a packet!");
+        System.out.println("L2Forward::receiveDataPacket(): Received a packet");
         Packet formattedPak = this.dataPacketService.decodeDataPacket(inPkt);
         NodeConnector incoming_connector = inPkt.getIncomingNodeConnector();
         Node incoming_node = incoming_connector.getNode();
-        //test
-        //RecA reca_object = new RecA();
 
         if (formattedPak instanceof Ethernet) {
             byte[] srcMAC = ((Ethernet)formattedPak).getSourceMACAddress();
@@ -188,30 +195,49 @@ public class L2Forward implements IListenDataPacket {
                 return PacketResult.CONSUME;
             }
 
-            // Switch
+            // Switch Implementation
             else {
+                int srcIP = 0;
+                int dstIP = 0;
+                boolean checkIfDestInNetwork = true;
                 long srcMAC_val = BitBufferHelper.toNumber(srcMAC);
                 long dstMAC_val = BitBufferHelper.toNumber(dstMAC);
-                System.out.println("SRC MAC = " + srcMAC_val);
-                System.out.println("DST MAC = " + dstMAC_val);
-              
+                System.out.println("L2Forward::receiveDataPacket(): Source MAC = " + srcMAC_val);
+                System.out.println("L2Forward::receiveDataPacket(): Destination MAC = " + dstMAC_val);
+                Object formattedPakL3 = formattedPak.getPayload();
+
+                if (formattedPakL3 instanceof IPv4) {
+                    
+                    IPv4 ipv4Pkt = (IPv4) formattedPakL3;
+                    // We will retrieve the destination and source IP from the payload of PACKET_IN
+                    dstIP = ipv4Pkt.getDestinationAddress();
+                    srcIP = ipv4Pkt.getSourceAddress();
+                    System.out.println("L2Forward::receiveDataPacket(): Source IP = " + srcIP);
+                    System.out.println("L2Forward::receiveDataPacket(): Destination IP = " + dstIP);
+                }
+
                 Match match = new Match();
                 match.setField( new MatchField(MatchType.IN_PORT, incoming_connector) );
                 match.setField( new MatchField(MatchType.DL_DST, dstMAC.clone()) );
 
-                // Set up the mapping: switch -> src MAC address -> incoming port
+                // Create mapping for MAP(Switch, MAP(Host, nodeConnector))
                 if (!this.mac_to_port_per_switch.containsKey(incoming_node)) {
                     this.mac_to_port_per_switch.put(incoming_node, new HashMap<Long, NodeConnector>());
                 }
                 this.mac_to_port_per_switch.get(incoming_node).put(srcMAC_val, incoming_connector);
-                System.out.println("Mapped entries!");
-            
-                System.out.println("Skipped all the if statements without executing them");
+                System.out.println("L2Forward::receiveDataPacket(): Mapped entries for source MAC " + srcMAC_val + " and destination MAC " + dstMAC_val);
+    
                 NodeConnector dst_connector = this.mac_to_port_per_switch.get(incoming_node).get(dstMAC_val);
-		System.out.println("Destination Node Connector = " + dst_connector);
-                // Do I know the destination MAC?
+		        System.out.println("L2Forward::receiveDataPacket(): Destination Node Connector = " + dst_connector);
+
+                // We check if the destination IP we are reaching is in same network or not
+                if (srcIP != 0 && dstIP != 0) {
+                    checkIfDestInNetwork = checkIfHostsInNetwork(srcIP, dstIP);
+                }
+
+                // Check if we know the node connector to send packet out to reach destination
                 if (dst_connector != null) {
-                	System.out.println("Executing flow mod!");
+                	System.out.println("L2Forward::ReceiveDataPacket(): Executing Flow Mod");
                     List<Action> actions = new ArrayList<Action>();
                     actions.add(new Output(dst_connector));
 
@@ -228,13 +254,100 @@ public class L2Forward implements IListenDataPacket {
                     logger.info("Installed flow {} in node {}",
                             f, incoming_node);
                 }
-                else 
-                    { floodPacket(inPkt);
-                      System.out.println("Flooded!");
+                else {
+                    if (checkIfDestInNetwork) {
+                        floodPacket(inPkt);
+                        System.out.println("L2Forward::receiveDataPacket() Flooded");
                     }
+                    else {
+                        // Find out the port that this has to go to by calling Sareena's PortDiscovery class
+                    }                
+                }
             }
         }
         return PacketResult.IGNORED;
+    }
+
+    // Check if the destination IP we are trying to reach is within our network or not
+    public boolean checkIfHostsInNetwork(int sourceIP, int destinationIP) {
+        Set<Node> allNodes = switchManager.getNodes();
+
+        // Determine the switch we are connected to,
+        Node destinationHostNode = findNodeHostConnectedTo(destinationIP);
+
+        // Check if the destination switch we are trying to reach is within our topology network of switches currently
+        if (destinationIP >= 167772160 && destinationIP <= 167772192) {
+            if (sourceIP >= 167772160 && sourceIP <= 167772192) {
+                System.out.println("L2Forward::checkIfHostsInNetwork() Destination IP " + destinationIP + " is in same network as this child controller");
+                return true;
+            }
+            else {
+                if (allNodes.contains(destinationHostNode)) {
+                    System.out.println("L2Forward::checkIfHostsInNetwork() Destination IP " + destinationIP + " is in same network as this child controller");
+                    return true;
+                }
+                else return false;
+            }
+        }
+        else if (destinationIP >= 167772192 && destinationIP <= 167772224) {
+            if (sourceIP >= 167772192 && sourceIP <= 167772224) {
+                System.out.println("L2Forward::checkIfHostsInNetwork() Destination IP " + destinationIP + " is in same network as this child controller");
+                return true;
+            }
+            else {
+                if (allNodes.contains(destinationHostNode)) {
+                    System.out.println("L2Forward::checkIfHostsInNetwork() Destination IP " + destinationIP + " is in same network as this child controller");
+                    return true;
+                }
+                else return false;
+            }
+        }
+        else if (destinationIP >= 167772224 && destinationIP <= 167772256) {
+            if (sourceIP >= 167772224 && sourceIP <= 167772256) {
+                System.out.println("L2Forward::checkIfHostsInNetwork() Destination IP " + destinationIP + " is in same network as this child controller");
+                return true;
+            }
+            else {
+                if (allNodes.contains(destinationHostNode)) {
+                    System.out.println("L2Forward::checkIfHostsInNetwork() Destination IP " + destinationIP + " is in same network as this child controller");
+                    return true;
+                }
+                else return false;
+            }
+        }
+        else if (destinationIP >= 167772256 && destinationIP <= 167772288) {
+            if (sourceIP >= 167772256 && sourceIP <= 167772288) {
+                System.out.println("L2Forward::checkIfHostsInNetwork() Destination IP " + destinationIP + " is in same network as this child controller");
+                return true;
+            }
+            else {
+                if (allNodes.contains(destinationHostNode)) {
+                    System.out.println("L2Forward::checkIfHostsInNetwork() Destination IP " + destinationIP + " is in same network as this child controller");
+                    return true;
+                }
+                else return false;
+            }
+        }
+        return false;
+    }
+
+    // Through destination IP, determine which switch we are connected to. We are hardcoding this as per topology as HostTracker does not work for
+    // northbound API. It works for only REST API.
+    public Node findNodeHostConnectedTo(int destIP) {
+        System.out.println("L2Forward::findNodeHostConnectedTo(): Determining the destination host " + destIP + "'s domain switch");
+        if (destIP >= 167772160 && destIP <= 167772192) {
+            return Node.fromString("OF|00:00:00:00:00:00:00:01");
+        }
+        else if (destIP >= 167772192 && destIP <= 167772224) {
+            return Node.fromString("OF|00:00:00:00:00:00:00:02");
+        }
+        else if (destIP >= 167772224 && destIP <= 167772256) {
+            return Node.fromString("OF|00:00:00:00:00:00:00:03");
+        }
+        else if (destIP >= 167772256 && destIP <= 167772288) {
+            return Node.fromString("OF|00:00:00:00:00:00:00:04");
+        }
+        return null;
     }
 }
 

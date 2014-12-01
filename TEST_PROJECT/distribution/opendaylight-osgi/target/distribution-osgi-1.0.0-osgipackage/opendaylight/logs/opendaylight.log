@@ -1,8 +1,20 @@
-2014-11-30 16:43:37.204 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
-2014-11-30 16:43:37.269 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
-2014-11-30 16:43:37.520 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
-2014-11-30 16:43:37.628 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
-2014-11-30 16:43:37.629 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
-2014-11-30 16:43:38.154 EST [fileinstall-./plugins] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
-2014-11-30 16:43:44.120 EST [Start Level Event Dispatcher] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
-2014-11-30 16:43:55.725 EST [Start Level Event Dispatcher] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
+2014-12-01 18:17:19.704 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-12-01 18:17:19.750 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
+2014-12-01 18:17:20.066 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
+2014-12-01 18:17:20.181 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
+2014-12-01 18:17:20.182 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
+2014-12-01 18:17:20.613 EST [fileinstall-./plugins] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-12-01 18:17:26.209 EST [Start Level Event Dispatcher] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
+2014-12-01 18:17:39.920 EST [Start Level Event Dispatcher] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
+2014-12-01 18:18:15.142 EST [SwitchHandler-4] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46223 is connected to the Controller
+2014-12-01 18:18:15.369 EST [SwitchHandler-5] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46224 is connected to the Controller
+2014-12-01 18:18:15.640 EST [SwitchHandler-6] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46225 is connected to the Controller
+2014-12-01 18:18:15.851 EST [SwitchHandler-7] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46226 is connected to the Controller
+2014-12-01 18:18:16.064 EST [SwitchHandler-8] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46227 is connected to the Controller
+2014-12-01 18:18:16.185 EST [SwitchHandler-9] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46228 is connected to the Controller
+2014-12-01 18:19:57.969 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46223 SWID:00:00:00:00:00:00:00:01 is removed
+2014-12-01 18:19:58.091 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46224 SWID:00:00:00:00:00:00:00:02 is removed
+2014-12-01 18:19:58.183 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46225 SWID:00:00:00:00:00:00:00:03 is removed
+2014-12-01 18:19:58.317 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46226 SWID:00:00:00:00:00:00:00:04 is removed
+2014-12-01 18:19:58.426 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46227 SWID:00:00:00:00:00:00:00:05 is removed
+2014-12-01 18:19:58.470 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.102:46228 SWID:00:00:00:00:00:00:00:06 is removed

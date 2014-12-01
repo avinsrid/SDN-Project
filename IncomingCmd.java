@@ -138,7 +138,7 @@ public class IncomingCmd extends Thread {
 			// Below check command is obtained from mininet Node.py code --> https://github.com/mininet/mininet/blob/master/mininet/node.py under
 			// def connected()
 			if (controller.equals("tcp:192.168.56.101:6633")) {
-				p = Runtime.getRuntime().exec("sudo ovs-vsctl -- get Controller " + switchID + "is_connected");
+				p = Runtime.getRuntime().exec("sudo ovs-vsctl -- get Controller " + switchID + " is_connected");
 				BufferedReader newInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 				if (newInput.equals("false")) {
 					p = Runtime.getRuntime().exec("sudo ovs-vsctl del-controller " + switchID);
@@ -146,7 +146,7 @@ public class IncomingCmd extends Thread {
 				}
 			}
 			else if (controller.equals("tcp:192.168.56.102:6633")) {
-				p = Runtime.getRuntime().exec("sudo ovs-vsctl -- get Controller " + switchID + "is_connected");
+				p = Runtime.getRuntime().exec("sudo ovs-vsctl -- get Controller " + switchID + " is_connected");
 				BufferedReader newInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 				if (newInput.equals("false")) {			
 					p = Runtime.getRuntime().exec("sudo ovs-vsctl del-controller " + switchID);

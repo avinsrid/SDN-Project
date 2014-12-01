@@ -1,6 +1,6 @@
 /* Minor print out modifications, must delete getTail test in RecaImplementation, uncomment TCP section*/
 
-package sdn.project.reca; // If in test folder name as reca.java
+package sdn.project.reca; 
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

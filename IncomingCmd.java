@@ -133,28 +133,44 @@ public class IncomingCmd extends Thread {
 			Process p = Runtime.getRuntime().exec("sudo ovs-vsctl get-controller " + switchID);
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String controller = input.readLine();
+			System.out.println("IncomingCmd::checkFailover(): " + switchID + " connected to controller " + controller);
 
 			// Based on the switch's current controller, check if it's connectivity is true/false. If false, do the failover to slave controller.
 			// Below check command is obtained from mininet Node.py code --> https://github.com/mininet/mininet/blob/master/mininet/node.py under
-			// def connected()
-			if (controller.equals("tcp:192.168.56.101:6633")) {
-				p = Runtime.getRuntime().exec("sudo ovs-vsctl -- get Controller " + switchID + " is_connected");
-				BufferedReader newInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				if (newInput.equals("false")) {
-					p = Runtime.getRuntime().exec("sudo ovs-vsctl del-controller " + switchID);
-					p = Runtime.getRuntime().exec("sudo ovs-vsctl set-controller " + switchID + " tcp:192.168.56.102:6633");
+			// def connected().
+			// There is another issue here where we have to take care of a null pointer exception in case the above command does not return a current controller
+			// This seems to happen probably because the ovs-vsctl set-controller command for a specific switch is not being taken into effect.
+			// Maybe the commands are executing too fast, leading to some sort of a race condition. Hence we need to ensure we give some gap of 1 second,
+			// to prevent the race condition. This will be done by making the thread sleep for a gap of 1 second as safety. We also check for controller string to
+			// not be null in order to ensure we don't run into Null Pointer Exception. This way entire program won't crash.
+                        if (controller != null) {      
+				if (controller.equals("tcp:192.168.56.1:6633")) {
+					p = Runtime.getRuntime().exec("sudo ovs-vsctl -- get Controller " + switchID + " is_connected");
+					BufferedReader newInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+					String newInputString = newInput.readLine();
+					System.out.println("IncomingCmd::checkFailover(): Is " + switchID + " connected to current controller? " + newInputString);
+					if (newInputString.equals("false")) {
+						p = Runtime.getRuntime().exec("sudo ovs-vsctl del-controller " + switchID);
+						Thread.sleep(1000);
+						p = Runtime.getRuntime().exec("sudo ovs-vsctl set-controller " + switchID + " tcp:192.168.56.102:6633");
+					}
+				}
+				else if (controller.equals("tcp:192.168.56.102:6633")) {
+					p = Runtime.getRuntime().exec("sudo ovs-vsctl -- get Controller " + switchID + " is_connected");
+					BufferedReader newInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+					String newInputString = newInput.readLine();
+					System.out.println("IncomingCmd::checkFailover(): Is " + switchID + " connected to current controller? " + newInputString);
+					if (newInputString.equals("false")) {			
+						p = Runtime.getRuntime().exec("sudo ovs-vsctl del-controller " + switchID);
+						Thread.sleep(1000);
+						p = Runtime.getRuntime().exec("sudo ovs-vsctl set-controller " + switchID + " tcp:192.168.56.1:6633");
+					}
 				}
 			}
-			else if (controller.equals("tcp:192.168.56.102:6633")) {
-				p = Runtime.getRuntime().exec("sudo ovs-vsctl -- get Controller " + switchID + " is_connected");
-				BufferedReader newInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				if (newInput.equals("false")) {			
-					p = Runtime.getRuntime().exec("sudo ovs-vsctl del-controller " + switchID);
-					p = Runtime.getRuntime().exec("sudo ovs-vsctl set-controller " + switchID + " tcp:192.168.56.101:6633");
-				}
-			}
-		}		
+		}					
+		
 		catch(IOException e) {System.out.println("IncomingCmd::checkFailover(): Error executing commands for switch " + switchID); }
+		catch(InterruptedException ie) {System.out.println("IncomingCmd::checkFailover() Error with thread sleep "); }
 	}
 
 	public static void main(String[] args) {

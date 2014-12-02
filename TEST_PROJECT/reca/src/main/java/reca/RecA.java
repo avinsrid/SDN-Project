@@ -1,6 +1,6 @@
 /*RecA Module to communicate link status with the Master controller at 192.168.2.51 : 6634 */
 
-package sdn.project.reca;
+package reca;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -64,12 +64,10 @@ import org.opendaylight.controller.sal.routing.IRouting;
 import org.opendaylight.controller.topologymanager.ITopologyManager;
 import org.opendaylight.controller.topologymanager.ITopologyManagerAware;
 import org.opendaylight.controller.topologymanager.TopologyUserLinkConfig;
-import org.opendaylight.controller.hosttracker.*;
-import org.opendaylight.controller.hosttracker.hostAware.HostNodeConnector;
 
-public class reca implements IRouting, ITopologyManager {
+public class RecA implements IRouting, ITopologyManager {
     private static final Logger logger = LoggerFactory
-    .getLogger(reca.class);
+    .getLogger(RecA.class);
     private ISwitchManager switchManager = null;
     private ITopologyManager topologyManager = null;
     private Map<Node, Set<Edge>> edgesForEachNode = new HashMap<Node, Set<Edge>>();

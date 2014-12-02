@@ -32,7 +32,7 @@
               org.opendaylight.controller.sal.routing,
               org.opendaylight.controller.sal.flowprogrammer,
               org.opendaylight.controller.switchmanager,
-   	      reca.*,
+   	      portdiscovery.*,
               org.apache.felix.dm,
               org.osgi.service.component,
               org.slf4j,
@@ -88,7 +88,7 @@
     </dependency>
     <dependency>
       <groupId>columbia</groupId>
-      <artifactId>reca</artifactId>
+      <artifactId>portdiscovery</artifactId>
       <version>1.0.0</version>
     </dependency>
 

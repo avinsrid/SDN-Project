@@ -24,6 +24,11 @@ http://maven.apache.org/maven-v4_0_0.xsd">
       <groupId>columbia</groupId>
       <artifactId>reca</artifactId>
       <version>1.0.0</version>
+    </dependency>
+    <dependency>
+     <groupId>columbia</groupId>
+     <artifactId>portdiscovery</artifactId>
+     <version>1.0.0</version>
     </dependency>	
 
     <!-- SDNHub Artifacts -->

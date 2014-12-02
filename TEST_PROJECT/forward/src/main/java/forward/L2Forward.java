@@ -1,6 +1,6 @@
 package forward;
 
-import reca.*;
+import portdiscovery.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -64,7 +64,6 @@ public class L2Forward implements IListenDataPacket {
     private String function = "switch";
     private Map<Long, Long> numberOfMacs = new HashMap<Long, Long>();
     private long count = 0L;
-    private RecA reca_object = new RecA();
     void setDataPacketService(IDataPacketService s) {
         this.dataPacketService = s;
     }

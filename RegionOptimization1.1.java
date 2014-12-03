@@ -179,7 +179,6 @@ public class RO implements IRouting, ITopologyManager {
     
     public void Switchfailovercheck()
     {
-        Map<Node,Integer> temp = new HashMap<Node,Integer>();
         System.out.println("\n\n Current Topology Map of Nodes and Number of Hosts is " + currentTopology);
 
         if(!currentTopology.isEmpty())
@@ -217,9 +216,16 @@ public class RO implements IRouting, ITopologyManager {
                 System.out.println("\n\n SAME NUMBER OF NODES NOT PRESENT IN CURRENT AND NEW TOPOLOGY");
             }
         }
-        
-        temp = newTopology;
-        currentTopology = temp;
+        // #7 Fix, please try, this should hopefully fix it
+        for (Node everyNode : newTopology.keySet()) {
+        	int temp = newTopology.get(everyNode);
+        	if (currentTopology.containsKey(everyNode) {
+        		currentTopology.remove(everyNode);
+        		currentTopology.put(everyNode, temp);
+        	}
+        	else { currentTopology.put(everyNode, temp); }
+        }
+
         System.out.println("\n\n REACHED END OF SWITCHFAILOVER FUNCTION");
         
     }

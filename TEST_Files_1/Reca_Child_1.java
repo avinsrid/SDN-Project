@@ -168,6 +168,7 @@ public class RecA implements IRouting, ITopologyManager {
         {
             if (System.currentTimeMillis() - Timer > pollTime)
             {
+                System.out.println("Reca::RecaImplementation() :- \nChecking topology for extra edges");
                 Timer = System.currentTimeMillis();
                 edgesForEachNode = topologyManager.getNodeEdges();
                 allNodes = edgesForEachNode.keySet();
@@ -189,15 +190,6 @@ public class RecA implements IRouting, ITopologyManager {
                                     if(!setOfNodeconnectors.contains(Tail))
                                     {
                                         setOfNodeconnectors.add(Tail);
-                                        
-                                     /*   ////////ALL EXTRA -> Just for testing - to be removed////////
-                                        setOfNodeconnectors1 = getTail(); //setOfNodeconnectors1 -> just to test method getTail();
-                                        if(!setOfNodeconnectors1.isEmpty()) {
-                                            for(NodeConnector N : setOfNodeconnectors1) {
-                                                System.out.println("ELEMENT in set is : " + N);
-                                            }
-                                        }
-                                            */
                                     }
                                     destNodeMap.put(checkNode,extraLink);
                                     extraEdge.put(checkNode,edgeCheck);

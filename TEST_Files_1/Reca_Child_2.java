@@ -4,6 +4,7 @@ Child 1 : 192.168.56.1 : 6633
 Child 2 : 192.168.56.21 : 6633 
 
 Run IncomingCmd.java on Floodlight VM with 192.168.56.101 -> Use this for TCP connection
+Change name to RecA.java
 */
 
 package reca;

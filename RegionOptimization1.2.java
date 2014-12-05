@@ -287,6 +287,7 @@ public class RO implements IRouting, ITopologyManager {
             Node[] arrayofNodesinCT = setofNodesinCT.toArray(new Node[setofNodesinCT.size()]);
             Node[] arrayofNodesinNT = setofNodesinNT.toArray(new Node[setofNodesinNT.size()]);
             Integer a,b,c,d;
+            Integer fval;
             boolean p,q;
             a=arrayofNodesinCT.length;
             b=arrayofNodesinNT.length;
@@ -307,8 +308,8 @@ public class RO implements IRouting, ITopologyManager {
                             neww = Topologychild();
                              if(old != neww)
                               {
-                                 c = neww - old;
-                                 System.out.println("\n\n Number of Hosts Added " + c);
+                                 fval = neww - old;
+                                 System.out.println("\n\n Number of Hosts Added " + fval);
                               }
                        }
                     }
@@ -317,8 +318,8 @@ public class RO implements IRouting, ITopologyManager {
                         neww = Topologychild();
                         if(old != neww)
                         {
-                            c = neww - old;
-                            System.out.println("\n\n Number of Hosts Added " + c);
+                            fval = neww - old;
+                            System.out.println("\n\n Number of Hosts Added " + fval);
                         }
                     }
                 }

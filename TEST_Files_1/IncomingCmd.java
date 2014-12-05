@@ -104,7 +104,7 @@ public class IncomingCmd extends Thread {
                 Process p = Runtime.getRuntime().exec("sudo ovs-vsctl del-controller " + switchID);
                 
                 // Note that the below controller IP may change if needed based on testing
-                p = Runtime.getRuntime().exec("sudo ovs-vsctl set-controller " + switchID + " tcp:192.168.56.101:6633");
+                p = Runtime.getRuntime().exec("sudo ovs-vsctl set-controller " + switchID + " tcp:192.168.56.21:6633");
             }
             catch(IOException e) {System.out.println("IncomingCmd::switchController(): Error performing controller commands for switch " + switchID); }
         }
@@ -113,7 +113,7 @@ public class IncomingCmd extends Thread {
                 Process p = Runtime.getRuntime().exec("sudo ovs-vsctl del-controller " + switchID);
                 
                 // Note that the below controller IP may change if needed based on testing
-                p = Runtime.getRuntime().exec("sudo ovs-vsctl set-controller " + switchID + " tcp:192.168.56.102:6633");
+                p = Runtime.getRuntime().exec("sudo ovs-vsctl set-controller " + switchID + " tcp:192.168.56.1:6633");
             }
             catch(IOException e) {System.out.println("IncomingCmd::switchController(): Error performing controller commands for switch " + switchID); }
         }

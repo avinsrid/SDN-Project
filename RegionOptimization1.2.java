@@ -118,8 +118,8 @@ public class RO implements IRouting, ITopologyManager {
     private String function = "switch";
     
     long Timer = 0L;
-    Integer old = 0;
-    Integer neww = 0;
+    int old = 0;
+    int neww = 0;
     
     void setSwitchManager(ISwitchManager s) {
         logger.debug("SwitchManager set");
@@ -171,16 +171,14 @@ public class RO implements IRouting, ITopologyManager {
     public void roImplementation () {
     	Timer = System.currentTimeMillis();
         Integer g;
+        // TOPOLOGY FOR CHILD CONTROLLER C2
+        
+        old = Topologychild();
+        System.out.println("\n\n\n Old Size returned = " + old);
+        
     	while (true) {
     		if (System.currentTimeMillis() - Timer > 10000) {
     			Timer = System.currentTimeMillis();
-                
-                // Topology for Child Controller C2
-                
-                old = Topologychild();
-                System.out.println("\n\n\n Old Size returned = " + old);
-                
-                
                 
                 // Topology for Child Controller C1
                 
@@ -306,20 +304,26 @@ public class RO implements IRouting, ITopologyManager {
                          {
                             System.out.println("\n\n CHANGE IN TOPOLOGY");
                             neww = Topologychild();
+                             System.out.println("Value of Old Size " + old + " Value of New Size " + neww);
                              if(old != neww)
                               {
                                  fval = neww - old;
                                  System.out.println("\n\n Number of Hosts Added " + fval);
+                                  old = neww;
+                                  System.out.println("Value of Old Size " + old + " Value of New Size " + neww);
                               }
                        }
                     }
                     else{
                         System.out.println("\n\n SAME NODES NOT PRESENT IN CURRENT AND NEW TOPOLOGY");
                         neww = Topologychild();
+                        System.out.println("Value of Old Size " + old + " Value of New Size " + neww);
                         if(old != neww)
                         {
                             fval = neww - old;
                             System.out.println("\n\n Number of Hosts Added " + fval);
+                            old = neww;
+                            System.out.println("Value of Old Size " + old + " Value of New Size " + neww);
                         }
                     }
                 }

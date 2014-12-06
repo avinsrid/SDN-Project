@@ -1,11 +1,10 @@
-/*RecA Module to communicate link status with the 
-Parent :  192.168.56.21 : 6634
-Child 1 : 192.168.56.1 : 6633
-Child 2 : 192.168.56.21 : 6633 
-
-Run IncomingCmd.java on Floodlight VM with 192.168.56.101 -> Use this for TCP connection
-Change name to RecA.java
-*/
+/*RecA Module to communicate link status with the
+ Parent :  192.168.56.21 : 6634
+ Child 1 : 192.168.56.1 : 6633
+ Child 2 : 192.168.56.21 : 6633
+ Run IncomingCmd.java on Floodlight VM with 192.168.56.101 -> Use this for TCP connection
+ Change name to RecA.java
+ */
 
 package reca;
 
@@ -77,16 +76,16 @@ public class RecA implements IRouting, ITopologyManager {
     .getLogger(RecA.class);
     private ISwitchManager switchManager = null;
     private ITopologyManager topologyManager = null;
+    
+    
+    //Initialize variables
     private Map<Node, Set<Edge>> edgesForEachNode = new HashMap<Node, Set<Edge>>();
     private Set<Node> allNodes;
     private Set<Edge> NodeEdges;
     private Edge edgeCheck, edgeReverse, testEdge;
-    
     private Map<Node, Map<NodeConnector,NodeConnector>> destNodeMap= new HashMap<Node, Map<NodeConnector,NodeConnector>>();
     private Set<NodeConnector> setOfNodeconnectors = new HashSet<NodeConnector>();
-    //Just for trials
-    private Set<NodeConnector> setOfNodeconnectors1 = new HashSet<NodeConnector>();
-    private String MasterIP = "192.168.56.101";
+    private String MasterIP = "192.168.56.101"; // IP where we run IncomingCmd.java to handle master linkup/linkdown
     private int MasterPort = 41101; // Use 41102 / 41101 for 2 different child controllers
     private Map<NodeConnector,NodeConnector> extraLink = new HashMap<NodeConnector,NodeConnector>();
     private Map<Node, Edge> extraEdge = new HashMap<Node,Edge>();
@@ -158,11 +157,8 @@ public class RecA implements IRouting, ITopologyManager {
         
     }
     
-     public void RecAImplementation ()
+    public void RecAImplementation ()
     {
-        //Create Tcp connection with the Master controller
-        
-        
         Timer = System.currentTimeMillis();
         while (true)
         {
@@ -211,13 +207,12 @@ public class RecA implements IRouting, ITopologyManager {
                         System.out.println("\nReca::RecaImplementation : - ExtraEdge present in map");
                         //Entry present in map but no longer present in topology -> then remove
                         if(!NodeEdges.contains(edgeCheck)) {
-                            System.out.println("Reca::RecaImplementation() :- \nDelete extra edge!");
+                            System.out.println("Reca::RecaImplementation() :- No longer in topology - Delete extra edge!");
                             Tail=edgeCheck.getTailNodeConnector();
                             extraEdge.remove(checkNode);
                             destNodeMap.remove(checkNode);
-                            if(setOfNodeconnectors.contains(Tail) || setOfNodeconnectors1.contains(Tail)) {
+                            if(setOfNodeconnectors.contains(Tail)) {
                                 setOfNodeconnectors.remove(Tail);
-                                setOfNodeconnectors1.remove(Tail);
                             }
                             sendToMaster(2); // send linkdown to master
                         }
@@ -236,21 +231,17 @@ public class RecA implements IRouting, ITopologyManager {
     
     public void sendToMaster(int type) {        // Type 1 : Pull , type 2 Delete
         try {
-            
-  
-                System.out.println("RecA::RecAImplementation() Connecting to socket  of master");
-                Socket client = new Socket(MasterIP, MasterPort);
-                OutputStream outToServer = client.getOutputStream();
-                out = new DataOutputStream(outToServer);
-            
-            
+            System.out.println("RecA::RecAImplementation() Connecting to socket  of master");
+            Socket client = new Socket(MasterIP, MasterPort);
+            OutputStream outToServer = client.getOutputStream();
+            out = new DataOutputStream(outToServer);
             String toSend;
             if(type==1) toSend = "Pull-gs1";    //change to gs1 for other child
             else toSend = "Delete-gs1";         // change to gs1 for other child
             out.writeUTF(toSend);
-            System.out.println("\nReca::sendToMaster :- \nSent to Master Controller");// : " + toSend " on port " + MasterPort);
-         }
-         catch (IOException e) {e.printStackTrace();}
+            System.out.println("\nReca::sendToMaster :- \nSent to Master Controller : " + toSend);
+        }
+        catch (IOException e) {e.printStackTrace();}
     }
     
     /**

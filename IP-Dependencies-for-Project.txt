@@ -1,0 +1,18 @@
+IP dependencies:
+
+Child-1 :
+
+RecA to Mininet Machine
+RegOpt to Child-2
+PortDiscover to Parent Controller
+
+Child-2 :
+
+Reca to Mininet Machine
+RegOpt to Child-1
+PortDiscover to Parent Controller
+
+IncomingCmd.java
+
+Mininet dependencies for controllers
+

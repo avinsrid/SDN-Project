@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1417825353606
+Bnd-LastModified: 1417910109798
 Build-Jdk: 1.7.0_55
 Built-By: blitzavi89
 Bundle-Activator: regopt.Activator

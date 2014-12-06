@@ -17,7 +17,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.lang.Runtime;
 import java.lang.Process;
 import java.io.IOException;
-
+import java.net.*;
+import java.io.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -116,6 +117,9 @@ public class RO implements IRouting, ITopologyManager {
     private Map<Node,Integer> newTopology = new HashMap<Node,Integer>();
     private Set<Node> setOfNodeswithHosts = new HashSet<Node>();
     private String function = "switch";
+    private Map<Node,Integer> failoverCheck = new HashMap<Node,Integer>();
+    private String MasterIP = "192.168.56.101";
+    private int MasterPort = 41102; // CHILD CONTROLLER 2
     
     long Timer = 0L;
     int old = 0;
@@ -161,24 +165,46 @@ public class RO implements IRouting, ITopologyManager {
         
     }
     
+        /**
+     * Function called by the dependency manager when at least one
+     * dependency become unsatisfied or when the component is shutting
+     * down because for example bundle is being stopped.
+     *
+     */
+    void destroy() {
+    }
     
     void start() {
         logger.info("Started");
-        System.out.println("Region-Optimization started!");
+        System.out.println("RO::start(): Started ");
         roImplementation();
     }
+
+        /**
+     * Function called by the dependency manager before the services
+     * exported by the component are unregistered, this will be
+     * followed by a "destroy ()" calls
+     *
+     */
+    void stop() {
+        logger.info("Stopped");
+        System.out.println("RO::stop(): Stopped");
+    }
+    
+    // MAIN FUNCTION FOR REGION OPTIMIZATION
     
     public void roImplementation () {
-    	Timer = System.currentTimeMillis();
+        Timer = System.currentTimeMillis();
         Integer g;
+        
         // TOPOLOGY FOR CHILD CONTROLLER C2
         
         old = Topologychild();
-        System.out.println("\n\n\n Old Size returned = " + old);
+        System.out.println("\n\n\n NUMBER OF HOSTS IN OLD IS = " + old);
         
-    	while (true) {
-    		if (System.currentTimeMillis() - Timer > 10000) {
-    			Timer = System.currentTimeMillis();
+        while (true) {
+            if (System.currentTimeMillis() - Timer > 10000) {
+                Timer = System.currentTimeMillis();
                 
                 // Topology for Child Controller C1
                 
@@ -217,16 +243,17 @@ public class RO implements IRouting, ITopologyManager {
      public Integer Topologychild()
      {
          Integer a = 0;
-          JSONObject HostConfig = gethostTracker("admin","admin","http://192.168.56.20:8080/controller/nb/v2/hosttracker/default/hosts/active");
-          System.out.println("\n\n Obtained JSON HostConfig from getHostTracker()" + HostConfig);
-        
-         try {
-         JSONArray hostArray = HostConfig.getJSONArray("hostConfig");
-         System.out.println("\n\n\n size = " + hostArray.length());
-             a = hostArray.length();
-         }
-         catch (JSONException e) { logger.error("Exception in JSON creation" + e); }
-         return a;
+         JSONObject HostConfig = gethostTracker("admin","admin","http://192.168.56.20:8080/controller/nb/v2/hosttracker/default/hosts/active");
+         System.out.println("\n\n Obtained JSON HostConfig from getHostTracker()" + HostConfig);
+
+            try {
+                 JSONArray hostArray = HostConfig.getJSONArray("hostConfig");
+                 System.out.println("\n\n\n size = " + hostArray.length());
+                 a = hostArray.length();
+             }
+             catch (JSONException e) { logger.error("Exception in JSON creation" + e); }
+             catch (NullPointerException ne) { logger.error("Exception in JSON creation" + ne);}
+             return a;
      }
     
      public static JSONObject gethostTracker(String user, String password, String baseURL) {
@@ -260,7 +287,6 @@ public class RO implements IRouting, ITopologyManager {
      }
      
      JSONObject hostconfigg = new JSONObject(result.toString());
-     System.out.println("PortDiscovery::gethostTracker(): Returned HostConfig to getPort()");
      return hostconfigg;
      }
      catch (Exception e) {
@@ -271,86 +297,112 @@ public class RO implements IRouting, ITopologyManager {
      }
      
     
-     
+    
     public void Switchfailovercheck()
     {
-        System.out.println("\n\n Current Topology Map of Nodes and Number of Hosts is " + currentTopology);
-        
         if(!currentTopology.isEmpty())
         {
             Set<Node> setofNodesinCT = currentTopology.keySet();
             Set<Node> setofNodesinNT = newTopology.keySet();
-            System.out.println("\n\n Obtained Set of Nodes in Current Topology" + setofNodesinCT);
-            System.out.println("\n\n Obtained Set of Nodes in New Topology" + setofNodesinNT);
+            //System.out.println("\n\n Obtained Set of Nodes in Current Topology" + setofNodesinCT);
+            //System.out.println("\n\n Obtained Set of Nodes in New Topology" + setofNodesinNT);
             Node[] arrayofNodesinCT = setofNodesinCT.toArray(new Node[setofNodesinCT.size()]);
             Node[] arrayofNodesinNT = setofNodesinNT.toArray(new Node[setofNodesinNT.size()]);
-            Integer a,b,c,d;
+            Integer c,d;
             Integer fval;
             boolean p,q;
-            a=arrayofNodesinCT.length;
-            b=arrayofNodesinNT.length;
-            System.out.println("\n\n New Topology Map of Nodes and Number of Hosts is " + newTopology);
-            System.out.println("\n\n Current Topology Map of Nodes and Number of Hosts is " + currentTopology);
-            if(a==b){
-                for(Node N : arrayofNodesinCT){
+            Integer count = 0;
+            int check = 0;
+            
+            System.out.println("\n\n NEW TOPOLOGY MAP OF HOSTS PER SWITCH IS " + newTopology);
+            System.out.println("\n\n CURRENT TOPOLOGY MAP OF HOSTS PER SWITCH IS " + currentTopology);
+            
+            if(!newTopology.isEmpty()){
+                for(Node N : arrayofNodesinCT)
+                {
+                    //TO CHECK IF CURRENT AND NEW HAVE THE SAME SWITCH
                     p=currentTopology.containsKey(N);
                     q=newTopology.containsKey(N);
+                    
                     if(p==true && q==true){
+                        
                         c=currentTopology.get(N);
                         d=newTopology.get(N);
+                        
+                        // TO CHECK IF NUMBER OF HOSTS/SWITCH IS SAME IN CURRENT AND NEW
                         if(c==d){
-                            System.out.println("\n\n No CHANGE IN TOPOLOGY");}
+                            System.out.println("\n\n NUMBER OF HOSTS/SWITCH IS SAME ");}
                         else
-                         {
-                            System.out.println("\n\n CHANGE IN TOPOLOGY");
+                        {
+                            System.out.println("\n\n CHANGE IN TOPOLOGY : NUMBER OF HOSTS PER SWITCH IS NOT SAME ");
                             neww = Topologychild();
-                             System.out.println("Value of Old Size " + old + " Value of New Size " + neww);
-                             if(old != neww)
-                              {
-                                 fval = neww - old;
-                                 System.out.println("\n\n Number of Hosts Added " + fval);
-                                  old = neww;
-                                  System.out.println("Value of Old Size " + old + " Value of New Size " + neww);
-                              }
-                       }
+                            System.out.println("VALUE OF OLD SIZE " + old + " VALUE OF NEW SIZE " + neww);
+                            if(old != neww)
+                            {
+                                fval = neww - old;
+                                System.out.println("\n\n NUMBER OF NEW HOSTS ADDED TO OTHER CONTROLLER IS " + fval);
+                                old = neww;
+                                
+                                // TO CHECK IF SWITCH SHOULD BE MOVED TO OTHER CONTROLLER
+                                count = count + 1;
+                                failoverCheck.put(N,count);
+                                check = failoverCheck.get(N);
+                                if(check >= 2)
+                                {
+                                    System.out.println("\n\n SEND COMMAND TO PARENT TO MOVE SWITCH TO OTHER CONTROLLER");
+                                    sendToMaster(1,N);
+                                    
+                                }
+                                else
+                                {
+                                    System.out.println("\n\n REG OPTIMIZATION THRESHOLD NOT REACHED");
+                                }
+                            }
+                        }
                     }
                     else{
-                        System.out.println("\n\n SAME NODES NOT PRESENT IN CURRENT AND NEW TOPOLOGY");
-                        neww = Topologychild();
-                        System.out.println("Value of Old Size " + old + " Value of New Size " + neww);
-                        if(old != neww)
-                        {
-                            fval = neww - old;
-                            System.out.println("\n\n Number of Hosts Added " + fval);
-                            old = neww;
-                            System.out.println("Value of Old Size " + old + " Value of New Size " + neww);
-                        }
+                        System.out.println("\n\n SAME SWITCHES NOT PRESENT IN CURRENT AND NEW TOPOLOGY");
                     }
                 }
             }
             else{
-                System.out.println("\n\n SAME NUMBER OF NODES NOT PRESENT IN CURRENT AND NEW TOPOLOGY");
+                System.out.println("\n\n NEW TOPOLOGY IS EMPTY ");
             }
         }
-        // #7 Fix, please try, this should hopefully fix it
+        
+        //OPERATION BETWEEN CURRENT AND NEW TOPOLOGY
         for (Node everyNode : newTopology.keySet())
         {
-        	int temp = newTopology.get(everyNode);
-        	if (currentTopology.containsKey(everyNode)) {
-        		currentTopology.remove(everyNode);
-        		currentTopology.put(everyNode, temp);
-        	}
-                else {
-                    currentTopology.put(everyNode, temp);
-                }
-                
-                System.out.println("\n\n REACHED END OF SWITCHFAILOVER FUNCTION");
-                }
-                }
-                
-                void stop() {
-                logger.info("Stopped");
+            int temp = newTopology.get(everyNode);
+            if (currentTopology.containsKey(everyNode)) {
+                currentTopology.remove(everyNode);
+                currentTopology.put(everyNode, temp);
             }
+            else {
+                currentTopology.put(everyNode, temp);
+            }
+            
+            System.out.println("\n\n REACHED END OF SWITCHFAILOVER FUNCTION");
+        }
+    }
+    
+    public void sendToMaster(int type, Node N) {        // Type 1 : Move Switch to Other Controller
+        try {
+            System.out.println("REGION OPTIMIZATION :  CONNECTING TO SOCKET OF MASTER ");
+            Socket client = new Socket(MasterIP, MasterPort);
+            OutputStream outToServer = client.getOutputStream();
+            DataOutputStream out = new DataOutputStream(outToServer);
+            String toSend;
+            String idd = N.getNodeIDString();
+            System.out.println("\n\n Node ID is " + idd);
+            if(type==1) {
+            out.writeUTF(idd);
+            }
+            System.out.println("\n\n REGION OPTIMIZATION: NODE ID SENT IS " + idd);
+        }
+        catch (IOException e) {e.printStackTrace();}
+    }
+    
                 
                 public Status addUserLink(TopologyUserLinkConfig arg0) {
                 // TODO Auto-generated method stub

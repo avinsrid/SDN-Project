@@ -25,7 +25,11 @@ http://maven.apache.org/maven-v4_0_0.xsd">
       <artifactId>reca</artifactId>
       <version>1.0.0</version>
     </dependency>
-
+    <dependency>
+      <groupId>columbia</groupId>
+      <artifactId>regopt</artifactId>
+      <version>1.0.0</version>   
+    </dependency>
 
     <!-- SDNHub Artifacts -->
     <dependency>

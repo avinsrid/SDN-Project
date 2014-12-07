@@ -194,43 +194,43 @@ public class RO implements IRouting, ITopologyManager {
     // MAIN FUNCTION FOR REGION OPTIMIZATION
     
     public void roImplementation () {
-    	Timer = System.currentTimeMillis();
+        Timer = System.currentTimeMillis();
         Integer g;
         
         // TOPOLOGY FOR CHILD CONTROLLER C2
         
         old = Topologychild();
-        System.out.println("\n\n\n NUMBER OF HOSTS IN OLD IS = " + old);
+        System.out.println("RO::roImplementation(): Number Of Hosts In OLD IS = " + old);
         
-    	while (true) {
-    		if (System.currentTimeMillis() - Timer > 10000) {
-    			Timer = System.currentTimeMillis();
+        while (true) {
+            if (System.currentTimeMillis() - Timer > 10000) {
+                Timer = System.currentTimeMillis();
                 
                 // Topology for Child Controller C1
                 
                 nodeswithNodeConnectorHosts = topologyManager.getNodesWithNodeConnectorHost();
-                System.out.println("\n\nRO::roImplementation: Obtained Node Connectors with hosts for each node!" + nodeswithNodeConnectorHosts);
+                System.out.println("RO::roImplementation(): Obtained Node Connectors with hosts for each node" + nodeswithNodeConnectorHosts);
                 
                 setOfNodeconnectors = topologyManager.getNodeConnectorWithHost();
-                System.out.println("\n\n RO::roImplementation: Set of Node Connectors " + setOfNodeconnectors);
+                System.out.println("RO::roImplementation(): Set of Node Connectors " + setOfNodeconnectors);
                 
                 
                 // Map of Hosts per Node
                 
                 if(!nodeswithNodeConnectorHosts.isEmpty())
                 {
-                    System.out.println("\n\n nodeswithNodeConnectorHosts is a Not Empty Set");
+                    System.out.println("RO::roImplementation(): nodeswithNodeConnectorHosts is a Not Empty Set");
                     Set<Node> setOfNodeswithHosts = nodeswithNodeConnectorHosts.keySet();
-                    System.out.println("\n\n Obtained Set of Nodes with Host " + setOfNodeswithHosts);
+                    System.out.println("RO::roImplementation(): Obtained Set of Nodes with Host " + setOfNodeswithHosts);
                     Node[] arrayOfNodeswithHosts = setOfNodeswithHosts.toArray(new Node[setOfNodeswithHosts.size()]);
                     for(Node N: arrayOfNodeswithHosts){
-                        System.out.println ("\n\n Node is " + N);
+                        System.out.println ("RO::roImplementation(): Node is " + N);
                         Set<NodeConnector> setofNodeConn = nodeswithNodeConnectorHosts.get(N);
                         newTopology.put(N,setofNodeConn.size());
                     }
-                    System.out.println("\n\n New Topology Map of Nodes and Number of Hosts is " + newTopology);
+                    System.out.println("RO::roImplementation(): New Topology Map of Nodes and Number of Hosts is " + newTopology);
                     Switchfailovercheck();
-                    System.out.println("\n\n Exceuted SwitchFailoverCheck Function");
+                    System.out.println("RO::roImplementation(): Exceuted SwitchFailoverCheck Function");
                 }
                 
             }
@@ -244,11 +244,11 @@ public class RO implements IRouting, ITopologyManager {
      {
          Integer a = 0;
          JSONObject HostConfig = gethostTracker("admin","admin","http://192.168.56.20:8080/controller/nb/v2/hosttracker/default/hosts/active");
-         System.out.println("\n\n Obtained JSON HostConfig from getHostTracker()" + HostConfig);
+         System.out.println("RO::TopologyChild(): Obtained JSON HostConfig from getHostTracker()" + HostConfig);
 
             try {
                  JSONArray hostArray = HostConfig.getJSONArray("hostConfig");
-                 System.out.println("\n\n\n size = " + hostArray.length());
+                 System.out.println("RO::TopologyChild(): size = " + hostArray.length());
                  a = hostArray.length();
              }
              catch (JSONException e) { logger.error("Exception in JSON creation" + e); }
@@ -314,8 +314,8 @@ public class RO implements IRouting, ITopologyManager {
             Integer count = 0;
             int check = 0;
             
-            System.out.println("\n\n NEW TOPOLOGY MAP OF HOSTS PER SWITCH IS " + newTopology);
-            System.out.println("\n\n CURRENT TOPOLOGY MAP OF HOSTS PER SWITCH IS " + currentTopology);
+            System.out.println("RO::Switchfailovercheck(): NEW TOPOLOGY MAP OF HOSTS PER SWITCH IS " + newTopology);
+            System.out.println("RO::Switchfailovercheck(): CURRENT TOPOLOGY MAP OF HOSTS PER SWITCH IS " + currentTopology);
             
             if(!newTopology.isEmpty()){
                 for(Node N : arrayofNodesinCT)
@@ -331,16 +331,16 @@ public class RO implements IRouting, ITopologyManager {
                         
                         // TO CHECK IF NUMBER OF HOSTS/SWITCH IS SAME IN CURRENT AND NEW
                         if(c==d){
-                            System.out.println("\n\n NUMBER OF HOSTS/SWITCH IS SAME ");}
+                            System.out.println("RO::Switchfailovercheck(): NUMBER OF HOSTS/SWITCH IS SAME ");}
                         else
                         {
-                            System.out.println("\n\n CHANGE IN TOPOLOGY : NUMBER OF HOSTS PER SWITCH IS NOT SAME ");
+                            System.out.println("RO::Switchfailovercheck(): CHANGE IN TOPOLOGY : NUMBER OF HOSTS PER SWITCH IS NOT SAME ");
                             neww = Topologychild();
-                            System.out.println("VALUE OF OLD SIZE " + old + " VALUE OF NEW SIZE " + neww);
+                            System.out.println("RO::Switchfailovercheck(): VALUE OF OLD SIZE " + old + " VALUE OF NEW SIZE " + neww);
                             if(old != neww)
                             {
                                 fval = neww - old;
-                                System.out.println("\n\n NUMBER OF NEW HOSTS ADDED TO OTHER CONTROLLER IS " + fval);
+                                System.out.println("RO::Switchfailovercheck(): NUMBER OF NEW HOSTS ADDED TO OTHER CONTROLLER IS " + fval);
                                 old = neww;
                                 
                                 // TO CHECK IF SWITCH SHOULD BE MOVED TO OTHER CONTROLLER
@@ -349,56 +349,56 @@ public class RO implements IRouting, ITopologyManager {
                                 check = failoverCheck.get(N);
                                 if(check >= 2)
                                 {
-                                    System.out.println("\n\n SEND COMMAND TO PARENT TO MOVE SWITCH TO OTHER CONTROLLER");
+                                    System.out.println("RO::Switchfailovercheck(): SEND COMMAND TO PARENT TO MOVE SWITCH TO OTHER CONTROLLER");
                                     sendToMaster(1,N);
                                     
                                 }
                                 else
                                 {
-                                    System.out.println("\n\n REG OPTIMIZATION THRESHOLD NOT REACHED");
+                                    System.out.println("RO::Switchfailovercheck(): REG OPTIMIZATION THRESHOLD NOT REACHED");
                                 }
                             }
                         }
                     }
                     else{
-                        System.out.println("\n\n SAME SWITCHES NOT PRESENT IN CURRENT AND NEW TOPOLOGY");
+                        System.out.println("RO::Switchfailovercheck(): SAME SWITCHES NOT PRESENT IN CURRENT AND NEW TOPOLOGY");
                     }
                 }
             }
             else{
-                System.out.println("\n\n NEW TOPOLOGY IS EMPTY ");
+                System.out.println("RO::Switchfailovercheck(): NEW TOPOLOGY IS EMPTY ");
             }
         }
         
         //OPERATION BETWEEN CURRENT AND NEW TOPOLOGY
         for (Node everyNode : newTopology.keySet())
         {
-        	int temp = newTopology.get(everyNode);
-        	if (currentTopology.containsKey(everyNode)) {
-        		currentTopology.remove(everyNode);
-        		currentTopology.put(everyNode, temp);
-        	}
+            int temp = newTopology.get(everyNode);
+            if (currentTopology.containsKey(everyNode)) {
+                currentTopology.remove(everyNode);
+                currentTopology.put(everyNode, temp);
+            }
             else {
                 currentTopology.put(everyNode, temp);
             }
             
-            System.out.println("\n\n REACHED END OF SWITCHFAILOVER FUNCTION");
+            System.out.println("RO::Switchfailovercheck(): REACHED END OF SWITCHFAILOVER FUNCTION");
         }
     }
     
     public void sendToMaster(int type, Node N) {        // Type 1 : Move Switch to Other Controller
         try {
-            System.out.println("REGION OPTIMIZATION :  CONNECTING TO SOCKET OF MASTER ");
+            System.out.println("RO::sendToMaster(): REGION OPTIMIZATION :  CONNECTING TO SOCKET OF MASTER ");
             Socket client = new Socket(MasterIP, MasterPort);
             OutputStream outToServer = client.getOutputStream();
             DataOutputStream out = new DataOutputStream(outToServer);
             String toSend;
             String idd = N.getNodeIDString();
-            System.out.println("\n\n Node ID is " + idd);
+            System.out.println("RO::sendToMaster(): Node ID is " + idd);
             if(type==1) {
             out.writeUTF(idd);
             }
-            System.out.println("\n\n REGION OPTIMIZATION: NODE ID SENT IS " + idd);
+            System.out.println("RO::sendToMaster(): REGION OPTIMIZATION: NODE ID SENT IS " + idd);
         }
         catch (IOException e) {e.printStackTrace();}
     }

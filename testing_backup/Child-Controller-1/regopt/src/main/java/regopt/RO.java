@@ -199,11 +199,11 @@ public class RO implements IRouting, ITopologyManager {
         
         // TOPOLOGY FOR CHILD CONTROLLER C2
         
-        old = Topologychild();
+        //old = Topologychild();
         System.out.println("\n\n\n NUMBER OF HOSTS IN OLD IS = " + old);
         
         while (true) {
-            if (System.currentTimeMillis() - Timer > 10000) {
+            if (System.currentTimeMillis() - Timer > 30000) {
                 Timer = System.currentTimeMillis();
                 
                 // Topology for Child Controller C1

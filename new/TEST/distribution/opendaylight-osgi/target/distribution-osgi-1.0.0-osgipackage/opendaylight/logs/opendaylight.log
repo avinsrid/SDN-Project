@@ -1,25 +1,98 @@
-2014-11-28 15:46:10.029 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
-2014-11-28 15:46:13.019 PST [fileinstall-./plugins] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
-2014-11-28 15:46:13.109 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
-2014-11-28 15:46:13.110 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
-2014-11-28 15:46:13.924 PST [fileinstall-./plugins] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
-2014-11-28 15:46:13.974 PST [fileinstall-./plugins] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
-2014-11-28 15:46:47.494 PST [Start Level Event Dispatcher] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
-2014-11-28 15:46:49.172 PST [Start Level Event Dispatcher] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
-2014-11-28 15:47:32.444 PST [SwitchHandler-1] INFO  o.o.c.p.o.core.internal.Controller - Switch:127.0.0.1:60399 is connected to the Controller
-2014-11-28 15:48:16.260 PST [SwitchEvent Thread] INFO  o.o.c.p.o.core.internal.Controller - Switch:127.0.0.1:60399 SWID:00:00:00:00:00:00:00:01 is removed
-2014-11-28 15:48:24.844 PST [SwitchHandler-3] INFO  o.o.c.p.o.core.internal.Controller - Switch:127.0.0.1:60401 is connected to the Controller
-2014-12-06 23:49:24.065 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
-2014-12-06 23:49:24.345 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
-2014-12-06 23:49:24.346 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
-2014-12-06 23:49:29.692 PST [fileinstall-./plugins] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
-2014-12-06 23:49:29.899 PST [fileinstall-./plugins] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
-2014-12-06 23:49:29.919 PST [fileinstall-./plugins] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
-2014-12-06 23:49:31.684 PST [Start Level Event Dispatcher] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
-2014-12-06 23:49:32.409 PST [Start Level Event Dispatcher] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
-2014-12-06 23:50:07.074 PST [SwitchHandler-2] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55906 is connected to the Controller
-2014-12-06 23:50:07.226 PST [SwitchHandler-3] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55907 is connected to the Controller
-2014-12-06 23:50:07.390 PST [SwitchHandler-4] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55908 is connected to the Controller
-2014-12-06 23:50:07.475 PST [SwitchHandler-5] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55909 is connected to the Controller
-2014-12-06 23:50:07.482 PST [SwitchHandler-6] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55910 is connected to the Controller
-2014-12-06 23:50:08.166 PST [SwitchHandler-7] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55911 is connected to the Controller
+2014-12-07 04:09:38.381 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
+2014-12-07 04:09:39.077 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
+2014-12-07 04:09:39.078 EST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
+2014-12-07 04:09:48.009 EST [Start Level Event Dispatcher] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
+2014-12-07 04:09:53.177 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-12-07 04:09:53.209 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
+2014-12-07 04:09:54.039 EST [Start Level Event Dispatcher] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
+2014-12-07 04:09:54.433 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-12-07 04:10:28.459 EST [SwitchHandler-1] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53703 is connected to the Controller
+2014-12-07 04:10:29.027 EST [SwitchHandler-2] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53705 is connected to the Controller
+2014-12-07 04:10:29.269 EST [SwitchHandler-3] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53706 is connected to the Controller
+2014-12-07 04:10:35.733 EST [SwitchHandler-4] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53709 is connected to the Controller
+2014-12-07 04:10:36.830 EST [SwitchHandler-5] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53710 is connected to the Controller
+2014-12-07 04:16:31.792 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53709 SWID:00:00:00:00:00:00:00:01 is removed
+2014-12-07 04:16:32.233 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53710 SWID:00:00:00:00:00:00:00:02 is removed
+2014-12-07 04:16:32.544 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53706 SWID:00:00:00:00:00:00:00:03 is removed
+2014-12-07 04:16:32.640 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53705 SWID:00:00:00:00:00:00:00:04 is removed
+2014-12-07 04:28:11.930 EST [fileinstall-./plugins] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
+2014-12-07 04:28:12.531 EST [fileinstall-./plugins] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
+2014-12-07 04:28:12.531 EST [fileinstall-./plugins] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
+2014-12-07 04:28:21.568 EST [fileinstall-./plugins] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
+2014-12-07 04:28:24.561 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-12-07 04:28:24.605 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
+2014-12-07 04:28:25.486 EST [Start Level Event Dispatcher] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-12-07 04:28:25.662 EST [fileinstall-./plugins] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
+2014-12-07 04:31:02.886 EST [SwitchHandler-2] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53714 is connected to the Controller
+2014-12-07 04:31:04.755 EST [SwitchHandler-3] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53715 is connected to the Controller
+2014-12-07 04:31:15.029 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:31:15.029 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:31:25.023 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:31:25.023 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:31:56.260 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:31:56.260 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:32:05.946 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:32:05.946 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:32:14.499 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:32:14.499 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (VENDOR) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:32:16.504 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:32:16.504 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (DESC) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:32:20.498 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:01
+2014-12-07 04:32:20.498 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (VENDOR) from switch 00:00:00:00:00:00:00:01
+2014-12-07 04:32:22.515 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:01
+2014-12-07 04:32:22.515 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:01
+2014-12-07 04:32:24.516 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:01
+2014-12-07 04:32:24.516 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:01
+2014-12-07 04:32:26.093 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53715 SWID:00:00:00:00:00:00:00:02 is removed
+2014-12-07 04:32:26.097 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:32:26.125 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (VENDOR) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:32:26.693 EST [SwitchHandler-4] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53723 is connected to the Controller
+2014-12-07 04:32:40.321 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:32:40.321 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:32:42.322 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:01
+2014-12-07 04:32:42.326 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (VENDOR) from switch 00:00:00:00:00:00:00:01
+2014-12-07 04:33:12.495 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:33:12.495 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:34:21.294 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:01
+2014-12-07 04:34:21.294 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:01
+2014-12-07 04:34:23.299 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:34:23.299 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:34:42.610 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:01
+2014-12-07 04:34:42.610 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:01
+2014-12-07 04:34:44.047 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53723 SWID:00:00:00:00:00:00:00:02 is removed
+2014-12-07 04:34:44.047 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:34:44.051 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:34:44.667 EST [SwitchHandler-5] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53724 is connected to the Controller
+2014-12-07 04:34:46.040 EST [SwitchHandler-6] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53725 is connected to the Controller
+2014-12-07 04:34:47.244 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53714 SWID:00:00:00:00:00:00:00:01 is removed
+2014-12-07 04:34:52.515 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:34:52.515 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:37:12.518 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:37:12.530 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:37:22.516 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:37:22.516 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:37:39.057 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:37:39.057 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:37:57.708 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:37:57.720 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:38:12.512 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:38:12.512 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:38:28.473 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:38:28.473 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:38:52.506 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:38:52.506 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:38:57.497 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:38:57.497 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (VENDOR) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:39:07.499 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:39:07.503 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (VENDOR) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:39:09.512 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:39:09.512 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:39:17.500 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:39:17.500 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (VENDOR) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:39:27.498 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:39:27.498 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (VENDOR) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:39:29.499 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:39:29.499 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (PORT) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:39:31.500 EST [Statistics Collector] WARN  o.o.c.p.o.c.internal.SwitchHandler - Timeout while waiting for STATS_REQUEST replies from 00:00:00:00:00:00:00:02
+2014-12-07 04:39:31.500 EST [Statistics Collector] WARN  o.o.c.p.o.i.OFStatisticsManager - Request Timed Out for (TABLE) from switch 00:00:00:00:00:00:00:02
+2014-12-07 04:39:59.852 EST [SwitchEvent Thread] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:53725 SWID:00:00:00:00:00:00:00:02 is removed

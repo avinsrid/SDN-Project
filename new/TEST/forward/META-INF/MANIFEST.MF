@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1417218003263
-Build-Jdk: 1.7.0_65
-Built-By: ubuntu
+Bnd-LastModified: 1417943318397
+Build-Jdk: 1.7.0_51
+Built-By: root
 Bundle-Activator: forward.Activator
 Bundle-ManifestVersion: 2
 Bundle-Name: Learning Switch Forwarding Behaviour

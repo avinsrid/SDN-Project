@@ -130,6 +130,7 @@ public class L2Forward implements IListenDataPacket {
      */
     void start() {
         logger.info("Started");
+        System.out.println("L2Forward::start(): Started");
     }
 
     /**
@@ -140,6 +141,7 @@ public class L2Forward implements IListenDataPacket {
      */
     void stop() {
         logger.info("Stopped");
+        System.out.println("L2Forward::stop(): Stopped");
     }
 
     private void floodPacket(RawPacket inPkt) {
@@ -188,8 +190,8 @@ public class L2Forward implements IListenDataPacket {
             else {
                 long srcMAC_val = BitBufferHelper.toNumber(srcMAC);
                 long dstMAC_val = BitBufferHelper.toNumber(dstMAC);
-                System.out.println("SRC MAC = " + srcMAC_val);
-                System.out.println("DST MAC = " + dstMAC_val);
+                System.out.println("L2Forward::receiveDataPacket(): Src MAC = " + srcMAC_val);
+                System.out.println("L2Forward::receiveDataPacket(): Dst MAC = " + dstMAC_val);
               
                 Match match = new Match();
                 match.setField( new MatchField(MatchType.IN_PORT, incoming_connector) );
@@ -200,14 +202,12 @@ public class L2Forward implements IListenDataPacket {
                     this.mac_to_port_per_switch.put(incoming_node, new HashMap<Long, NodeConnector>());
                 }
                 this.mac_to_port_per_switch.get(incoming_node).put(srcMAC_val, incoming_connector);
-                System.out.println("Mapped entries!");
             
-                System.out.println("Skipped all the if statements without executing them");
                 NodeConnector dst_connector = this.mac_to_port_per_switch.get(incoming_node).get(dstMAC_val);
-		System.out.println("Destination Node Connector = " + dst_connector);
+		System.out.println("L2Forward::receiveDataPacket(): Destination Node Connector = " + dst_connector);
                 // Do I know the destination MAC?
                 if (dst_connector != null) {
-                	System.out.println("Executing flow mod!");
+                	System.out.println("L2Forward::receiveDataPacket(): Executing flow mod!");
                     List<Action> actions = new ArrayList<Action>();
                     actions.add(new Output(dst_connector));
 
@@ -226,7 +226,7 @@ public class L2Forward implements IListenDataPacket {
                 }
                 else 
                     { floodPacket(inPkt);
-                      System.out.println("Flooded!");
+                      System.out.println("L2Forward::receiveDataPacket(): Flooded");
                     }
             }
         }

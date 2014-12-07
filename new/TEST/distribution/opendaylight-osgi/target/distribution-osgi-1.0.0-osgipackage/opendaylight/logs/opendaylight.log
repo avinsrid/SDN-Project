@@ -1,0 +1,25 @@
+2014-11-28 15:46:10.029 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
+2014-11-28 15:46:13.019 PST [fileinstall-./plugins] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-11-28 15:46:13.109 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
+2014-11-28 15:46:13.110 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
+2014-11-28 15:46:13.924 PST [fileinstall-./plugins] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-11-28 15:46:13.974 PST [fileinstall-./plugins] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
+2014-11-28 15:46:47.494 PST [Start Level Event Dispatcher] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
+2014-11-28 15:46:49.172 PST [Start Level Event Dispatcher] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
+2014-11-28 15:47:32.444 PST [SwitchHandler-1] INFO  o.o.c.p.o.core.internal.Controller - Switch:127.0.0.1:60399 is connected to the Controller
+2014-11-28 15:48:16.260 PST [SwitchEvent Thread] INFO  o.o.c.p.o.core.internal.Controller - Switch:127.0.0.1:60399 SWID:00:00:00:00:00:00:00:01 is removed
+2014-11-28 15:48:24.844 PST [SwitchHandler-3] INFO  o.o.c.p.o.core.internal.Controller - Switch:127.0.0.1:60401 is connected to the Controller
+2014-12-06 23:49:24.065 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - I'm a GossipRouter will listen on port 12001
+2014-12-06 23:49:24.345 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Started GossipRouter
+2014-12-06 23:49:24.346 PST [Start Level Event Dispatcher] INFO  o.o.c.c.s.internal.ClusterManager - Starting the ClusterManager
+2014-12-06 23:49:29.692 PST [fileinstall-./plugins] INFO  o.o.c.p.o.c.i.EnhancedController - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-12-06 23:49:29.899 PST [fileinstall-./plugins] INFO  o.o.c.p.o.core.internal.Controller - of.reserve_of_port NOT enabled. Hoping to work with a OF Broker
+2014-12-06 23:49:29.919 PST [fileinstall-./plugins] INFO  o.o.c.p.o.internal.Activator - REGISTERED OF13 Based SB Plugin
+2014-12-06 23:49:31.684 PST [Start Level Event Dispatcher] INFO  o.o.c.c.i.ConfigurationService - ConfigurationService Manager init
+2014-12-06 23:49:32.409 PST [Start Level Event Dispatcher] WARN  o.o.c.u.internal.UserManager - Network Administrator password is set to factory default. Please change the password as soon as possible.
+2014-12-06 23:50:07.074 PST [SwitchHandler-2] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55906 is connected to the Controller
+2014-12-06 23:50:07.226 PST [SwitchHandler-3] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55907 is connected to the Controller
+2014-12-06 23:50:07.390 PST [SwitchHandler-4] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55908 is connected to the Controller
+2014-12-06 23:50:07.475 PST [SwitchHandler-5] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55909 is connected to the Controller
+2014-12-06 23:50:07.482 PST [SwitchHandler-6] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55910 is connected to the Controller
+2014-12-06 23:50:08.166 PST [SwitchHandler-7] INFO  o.o.c.p.o.c.i.EnhancedController - Switch:192.168.56.101:55911 is connected to the Controller

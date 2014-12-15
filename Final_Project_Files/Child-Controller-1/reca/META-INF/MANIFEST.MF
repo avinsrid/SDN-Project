@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1417921060528
+Build-Jdk: 1.7.0_55
+Built-By: blitzavi89
+Bundle-Activator: reca.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: Rec-A Application
+Bundle-SymbolicName: columbia.reca
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: reca;uses:="org.opendaylight.controller.sal.core,org.ope
+ ndaylight.controller.sal.routing,org.opendaylight.controller.topologyma
+ nager,org.apache.felix.dm,org.opendaylight.controller.switchmanager,org
+ .opendaylight.controller.sal.packet,org.slf4j,org.osgi.framework,org.op
+ endaylight.controller.sal.utils";version="1.0.0"
+Import-Package: org.apache.felix.dm;version="[3.0,4)",org.eclipse.osgi.f
+ ramework.console;version="[1.1,2)",org.opendaylight.controller.sal.acti
+ on;version="[0.8,1)",org.opendaylight.controller.sal.core;version="[0.8
+ ,1)",org.opendaylight.controller.sal.flowprogrammer;version="[0.8,1)",o
+ rg.opendaylight.controller.sal.match;version="[0.8,1)",org.opendaylight
+ .controller.sal.packet;version="[0.8,1)",org.opendaylight.controller.sa
+ l.routing;version="[0.8,1)",org.opendaylight.controller.sal.topology;ve
+ rsion="[0.8,1)",org.opendaylight.controller.sal.utils;version="[0.8,1)"
+ ,org.opendaylight.controller.switchmanager;version="[0.7,1)",org.openda
+ ylight.controller.topologymanager;version="[0.4,1)",org.osgi.framework;
+ version="[1.7,2)",org.osgi.service.component;version="[1.2,2)",org.slf4
+ j;version="[1.7,2)"
+Tool: Bnd-1.50.0

@@ -45,12 +45,28 @@ PARENT CONTROLLER INSTRUCTIONS:
 We can use any existing parent controller, as there is no special code for this.
 
 You may clone the SDN-Hub-Tutorial and run this PARENT Controller on a separate VM or base machine PC. If you are running this on base machine PC,
+
+git clone https://github.com/avinsrid/SDNHub_Opendaylight_Tutorial.git
+
 be sure to modify the tomcat REST API port bindings to a port apart from 8080 else you will receive exceptions in log. To change this port, go to 
+distribution/opendaylight-osgi/target/distribution-osgi-1.0.0-osgipackage/opendaylight/configuration/ and modify the tomcat-server.xml file and make tomcat listening port to 8081 or 8082.
 
-distribution/opendaylight-osgi/target/distribution-osgi-1.0.0-osgipackage/opendaylight/configuration/ and modify the tomcat-server.xml file and make tomcat
-listening port to 8081 or 8082.
+MININET and MssM (Multi Threaded Smart Socket Master)
+==============================================================================================================
 
+Run mininet on a separate VM. In our testing we ran the mininet on 192.168.56.101
+####################################
 
+The MssM application is a java program and can be run the following ways:
+####################################
+1) Copy the MssM.java to Mininet machine.
+####################################
+2) Compile the MssM --> sudo javac MssM.java
+####################################
+3) Run the MssM --> sudo java MssM
+####################################
+
+For any queries, please feel free to contact Avinash, Nachiket, Shruti, Sareena
 
 
  

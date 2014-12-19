@@ -300,7 +300,7 @@ public class RO implements IRouting, ITopologyManager {
         }
         
     }
- /*
+ 
     public Integer Topologychild()
     {
         Integer a = 0;
@@ -358,7 +358,7 @@ public class RO implements IRouting, ITopologyManager {
     }
     
   
-  */
+  
     public void Switchfailovercheck()
     {
         if(!currentTopology.isEmpty())

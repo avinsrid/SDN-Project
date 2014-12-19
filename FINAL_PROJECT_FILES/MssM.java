@@ -24,16 +24,16 @@ import java.io.*;
 import java.lang.Runtime;
 import java.lang.Process;
 
-public class IncomingCmd extends Thread {
+public class MssM extends Thread {
 	private ServerSocket serverSocket;
 	private long currentTime;
 
-	public IncomingCmd(int port) throws IOException {
+	public MssM(int port) throws IOException {
 		serverSocket = new ServerSocket(port);
 		serverSocket.setSoTimeout(0);
 	}
 
-	public IncomingCmd(long timeValue) throws IOException {
+	public MssM(long timeValue) throws IOException {
 		currentTime = timeValue;
 		System.out.println("IncomingCmd:: Timer thread that checks switch master-slave failover implemented");
 	}
@@ -184,11 +184,11 @@ public class IncomingCmd extends Thread {
 		int port4 = 41202;
 		long timer = System.currentTimeMillis();
 		try {
-			Thread t1 = new IncomingCmd(port1);
-			Thread t2 = new IncomingCmd(port2);
-			Thread t3 = new IncomingCmd(port3);
-			Thread t4 = new IncomingCmd(port4);
-			Thread t5 = new IncomingCmd(timer);
+			Thread t1 = new MssM(port1);
+			Thread t2 = new MssM(port2);
+			Thread t3 = new MssM(port3);
+			Thread t4 = new MssM(port4);
+			Thread t5 = new MssM(timer);
 			t1.start();
 			t2.start();
 			t3.start();
